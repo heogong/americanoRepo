@@ -1,3 +1,5 @@
+package com.americano.foundation;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,7 +11,7 @@ import org.junit.Test;
 
 public class testMain {
 	@Test
-	public class doTest {
+	public void doTest() throws SQLException {
 		Connection connection = null;
 		PreparedStatement pstmt = null;
 		// Statement stmt = null;  <= Statement 보다는 PreparedStatement를 많이 쓴다고 한다
@@ -23,8 +25,8 @@ public class testMain {
 			e.printStackTrace();
 		}
 				
-		connection = DriverManager.getConnection("jdbc:mysql://heogong.cafe24.com:3306/heogong", "heogong", "wjdtka12");
-		String query = "SELECT * FROM customer";
+		connection = DriverManager.getConnection("jdbc:postgresql://americano.cikjtrzv1lg8.ap-northeast-2.rds.amazonaws.com:3306/americano", "americano", "americano");
+		String query = "SELECT * FROM T_USER";
 		pstmt = connection.prepareStatement(query);
 		rs = pstmt.executeQuery();
 		
