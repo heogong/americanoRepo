@@ -24,8 +24,9 @@ public class testMain {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
-		connection = DriverManager.getConnection("jdbc:postgresql://americano.cikjtrzv1lg8.ap-northeast-2.rds.amazonaws.com:3306/americano", "americano", "americano");
+		
+		
+		connection = DriverManager.getConnection("jdbc:mysql://americano.cikjtrzv1lg8.ap-northeast-2.rds.amazonaws.com:3306/americano", "americano", "americano");
 		String query = "SELECT * FROM T_USER";
 		pstmt = connection.prepareStatement(query);
 		rs = pstmt.executeQuery();

@@ -18,9 +18,9 @@ public class CustomerBizImpl implements CustomerBiz{
 		// TODO Auto-generated method stub
 		CustomerDomain customer = new CustomerDomain();
 		
-		customer.setName("TEST ���̹�����Ʈ");
+		customer.setName("TEST");
 		customer.setAge(33);
-		customer.setAddress("�Ŵ�浿");
+		customer.setAddress("�Ŵ�浿");
 		customer.setPhone("010-2012-7601");
 		
 		customerRepository.save(customer);

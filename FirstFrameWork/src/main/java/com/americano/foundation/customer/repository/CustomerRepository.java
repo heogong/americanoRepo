@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.americano.foundation.customer.domain.CustomerDomain;
 
-@Repository("jpaRepository")
+@Repository
 public interface CustomerRepository extends JpaRepository<CustomerDomain, Integer> {
 	 
 }
