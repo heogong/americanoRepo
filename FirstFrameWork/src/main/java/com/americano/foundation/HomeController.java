@@ -1,4 +1,4 @@
-package com.americano.foundation.web;
+package com.americano.foundation;
 
 import java.text.DateFormat;
 import java.util.Date;
