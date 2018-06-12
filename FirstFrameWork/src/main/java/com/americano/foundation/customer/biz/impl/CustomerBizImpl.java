@@ -20,7 +20,7 @@ public class CustomerBizImpl implements CustomerBiz{
 		
 		customer.setName("TEST");
 		customer.setAge(33);
-		customer.setAddress("신댑아도오오옹");
+		customer.setAddress("11111111222222222");
 		customer.setPhone("010-2012-7601");
 		
 		customerRepository.save(customer);

@@ -16,10 +16,10 @@
     </bean>
 	-->
 
-    <bean id="hibernateJpaVendorAdapter"
+    <!-- <bean id="hibernateJpaVendorAdapter"
         class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
         <property name="showSql" value="true" />
-    </bean>
+    </bean> -->
 
     <bean id="entityManagerFactory"
         class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
