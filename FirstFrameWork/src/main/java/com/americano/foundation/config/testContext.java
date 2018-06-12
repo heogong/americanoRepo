@@ -3,6 +3,7 @@ package com.americano.foundation.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
 public class testContext {
@@ -18,4 +19,14 @@ public class testContext {
 		
 		return ds;
 	}
+	
+	@Bean
+	public HibernateJpaVendorAdapter hibernateJpaVendorAdapter() {
+		HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
+		
+		va.setShowSql(true);
+		
+		return va;
+	}
+    
 }
