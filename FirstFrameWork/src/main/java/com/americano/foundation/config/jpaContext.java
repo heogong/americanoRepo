@@ -6,7 +6,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
-public class testContext {
+public class jpaContext {
 	
 	@Bean
 	public DriverManagerDataSource dataSource() {
