@@ -26,6 +26,9 @@
         
         <!-- Spring Security 버전 -->
         <org.springframework.security-version>3.2.3.RELEASE</org.springframework.security-version>
+        
+        <!-- CGLib (Spring Security 표현식 언어) 버전 -->
+        <cglib-version>3.1</cglib-version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -183,7 +186,7 @@
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
-			<version>3.1</version>
+			<version>${cglib-version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
