@@ -1,4 +1,4 @@
-package com.americano.foundation.context;
+package com.americano.foundation.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
