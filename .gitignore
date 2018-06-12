@@ -65,6 +65,7 @@ local.properties
 ### Java-Web ###
 ## ignoring target file
 target/
+/target/
 
 
 # End of https://www.gitignore.io/api/eclipse,java-web
