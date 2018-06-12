@@ -28,6 +28,11 @@
         <property name="packagesToScan" value="com.americano.foundation" />
     </bean>
 
+	<!-- 트랜잭션 어노테이션을 활용할때 사용 
+		트랜잭션 관련 java를 구성해야 함 
+		<tx:annotation-driven /> 
+	-->
+	
     <!-- JPA 전용 TransactionManager 생성 -->
     <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
