@@ -11,19 +11,24 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.americano.foundation.login.dao.UserDAO;
-import com.americano.foundation.user.domain.UserDomain;
+import com.americano.foundation.login.dao.LoginDAO;
 
+
+@Service
+@Transactional(readOnly=true)
 public class CustomUserDetailsService implements UserDetailsService {
-	@Autowired
-	private UserDAO userDAO;
 	
-	@Override
+	@Autowired
+	private LoginDAO loginDAO;
+	
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		
-		UserDomain user = userDAO.getUser(userId);
+		//UserDomain user = loginDAO.getUser(userId);
+		com.americano.foundation.user.domain.UserDomain user = loginDAO.getUser(userId);
 		
 		boolean enabled = true;
         boolean accountNonExpired = true;
@@ -37,12 +42,12 @@ public class CustomUserDetailsService implements UserDetailsService {
                 accountNonExpired, 
                 credentialsNonExpired, 
                 accountNonLocked,
-                getAuthorities(user.getRole().getRolesPk())
+                getAuthorities(user.getRole().getId())
         );
 	}
 	
-	public Collection<? extends GrantedAuthority> getAuthorities(Integer rolesPk) {
-		List<GrantedAuthority> authList = getGrantedAuthorities(getRoles(rolesPk));
+	public Collection<? extends GrantedAuthority> getAuthorities(Integer id) {
+		List<GrantedAuthority> authList = getGrantedAuthorities(getRoles(id));
 		return authList;
 	}
 	

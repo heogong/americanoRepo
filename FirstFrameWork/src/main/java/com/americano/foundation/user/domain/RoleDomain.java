@@ -18,7 +18,7 @@ public class RoleDomain {
 	 @Id
 	 @GeneratedValue
 	 @Column(name="ROLES_PK", nullable=true)
-	 private Integer rolesPk;
+	 private Integer id;
 	 
 	 @Column(name="ROLE", nullable=true)
 	 private String role;
@@ -30,13 +30,12 @@ public class RoleDomain {
     )
 	private Set<UserDomain> userRoles;
 
-
-	public Integer getRolesPk() {
-		return rolesPk;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setRolesPk(Integer rolesPk) {
-		this.rolesPk = rolesPk;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getRole() {
