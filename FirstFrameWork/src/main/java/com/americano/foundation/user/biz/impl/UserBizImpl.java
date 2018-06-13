@@ -1,7 +1,11 @@
 package com.americano.foundation.user.biz.impl;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.americano.foundation.user.biz.UserBiz;
 import com.americano.foundation.user.domain.UserDomain;
@@ -13,16 +17,36 @@ public class UserBizImpl implements UserBiz {
 	@Autowired
 	private UserRepository userRepository;
 	
+	//@Autowired
+	//private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	
 	@Override
-	public void insertData() {
+	public void insertUser(UserDomain user) {
 		// TODO Auto-generated method stub
-		UserDomain user = new UserDomain();
 		
-		user.setName("ев╫╨ем");
-		user.setAge(33);
-		user.setTel("010-000-0000");
+		//user.setUserPasswd(bCryptPasswordEncoder.encode(user.getUserPasswd()));
+		user.setUserFl(1);
+		user.setUserSt(1000);
+		user.setInstDt(new Date());
 		
 		userRepository.save(user);
+		
+	}
+
+	@Override
+	public UserDomain findUser(String id) {
+		// TODO Auto-generated method stub
+		
+		
+		return userRepository.findByUserId(id);
+	}
+
+	@Override
+	@Transactional
+	public UserDomain findUser2() {
+		// TODO Auto-generated method stub
+		return userRepository.findOne(1);
 	}
 	
 }

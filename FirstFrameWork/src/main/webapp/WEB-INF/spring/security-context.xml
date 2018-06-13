@@ -16,8 +16,17 @@
 			username-parameter : 로그인 아이디의 파라미터명 즉 name필드값을 설정합니다.
 			passoword-parameter : 비밀번호의 파라미터 명을 설정합니다.
 			login-processing-url : 폼에서 전송할 URL 값을 설정합니다. (action=login-processing-url) 
-		-->
+		
 		<form-login login-page="/login" username-parameter="username" password-parameter="password" login-processing-url="/authentication" />
+		-->
+		
+		<!-- 
+			invaldate-session : 세션을 모두 무효로 할 것인지를 사용자에게 묻습니다.
+			logout-url : 로그아웃 경로를 설정합니다.
+			logout-seccess-url : 로그아웃이 성공한 뒤에 이동한 경로를 설정합니다.
+		-->
+		<logout invalidate-session="true" logout-url="/unAuthentication" logout-success-url="/" />
+		
 	</http>
 	
 	<authentication-manager>

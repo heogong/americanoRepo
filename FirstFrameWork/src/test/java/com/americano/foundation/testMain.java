@@ -34,6 +34,7 @@ public class testMain {
 		while(rs.next()) {
 			System.out.println(rs.getString("name"));
 		}
+
 		
 	}
 	

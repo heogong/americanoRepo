@@ -29,6 +29,7 @@
         
         <!-- CGLib (Spring Security 표현식 언어) 버전 -->
         <cglib-version>3.1</cglib-version>
+        
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -190,7 +191,7 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-
+		
 	</dependencies>
 	
 	<!-- repositories 사용법 참고
