@@ -1,4 +1,4 @@
-package com.americano.foundation.login.service;
+package com.americano.foundation.login.service.Impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.americano.foundation.login.dao.LoginDAO;
+import com.americano.foundation.user.domain.UserDomain;
 
 
 @Service
@@ -27,8 +28,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		
-		//UserDomain user = loginDAO.getUser(userId);
-		com.americano.foundation.user.domain.UserDomain user = loginDAO.getUser(userId);
+		System.out.println("userId : "+userId);
+		System.out.println("userId : "+userId);
+		System.out.println("userId : "+userId);
+		System.out.println("userId : "+userId);
+		
+		
+		UserDomain user = loginDAO.getUser(userId);
 		
 		boolean enabled = true;
         boolean accountNonExpired = true;

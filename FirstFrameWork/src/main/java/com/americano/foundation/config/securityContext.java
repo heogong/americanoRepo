@@ -1,3 +1,4 @@
+/*
 package com.americano.foundation.config;
 
 import javax.sql.DataSource;
@@ -20,7 +21,7 @@ public class securityContext extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
-
+	
 	protected void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource);
 	}
@@ -43,3 +44,4 @@ public class securityContext extends WebSecurityConfigurerAdapter {
 	}
 
 }
+*/

@@ -3,6 +3,8 @@ package com.americano.foundation.login.dao.Impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManagerFactory;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,11 +18,16 @@ import com.americano.foundation.user.domain.UserDomain;
 @Repository
 public class LoginDAOImpl implements LoginDAO {
 	
+	/*@Autowired
+	private SessionFactory sessionFactory;*/
+	
 	@Autowired
-	private SessionFactory sessionFactory;
+	private EntityManagerFactory entityManagerFactory;
 	
 	private Session getSession() {
-		return sessionFactory.getCurrentSession();
+		Session session = entityManagerFactory.unwrap(Session.class);
+		
+		return session;
 	}
 	
 	public UserDomain getUser(String userId) {

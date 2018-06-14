@@ -8,8 +8,11 @@
 		http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 		
 	<http auto-config="true" use-expressions="true">
-		<intercept-url pattern="/login" access="permitAll" /> <!-- 최 상단 위치해야 함 -->
-		<intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
+		
+		<intercept-url pattern="/login" access="permitAll" /> <!-- 최 상단 위치해야 함 --> 
+		<intercept-url pattern="/home" access="hasRole('ROLE_SYSTEM')"/>
+		<intercept-url pattern="/**" access="permitAll"/>
+		
 		
 		<!-- 
 			login-page : 로그인이 요청될 시에 이동할 URL을 설정합니다.
@@ -17,23 +20,35 @@
 			passoword-parameter : 비밀번호의 파라미터 명을 설정합니다.
 			login-processing-url : 폼에서 전송할 URL 값을 설정합니다. (action=login-processing-url) 
 		-->
-		<form-login login-page="/login" username-parameter="username" password-parameter="password" login-processing-url="/authentication" />
+		<!-- <form-login login-page="/login" username-parameter="userId" password-parameter="passwd" login-processing-url="/authentication" /> -->
 		
+		<form-login login-page="/login"
+            default-target-url="/success-login"
+            authentication-failure-url="/error-login" />
+            
 		
 		<!-- 
 			invaldate-session : 세션을 모두 무효로 할 것인지를 사용자에게 묻습니다.
 			logout-url : 로그아웃 경로를 설정합니다.
 			logout-seccess-url : 로그아웃이 성공한 뒤에 이동한 경로를 설정합니다.
 		-->
-		<logout invalidate-session="true" logout-url="/unAuthentication" logout-success-url="/" />
+		<!-- <logout invalidate-session="true" logout-url="/unAuthentication" logout-success-url="/" /> -->
 		
 	</http>
 	
+	<beans:bean id="customUserDetailsService" class="com.americano.foundation.login.service.Impl.CustomUserDetailsService" />
+	
 	<authentication-manager>
+        <authentication-provider user-service-ref="customUserDetailsService">
+            <password-encoder hash="plaintext" />
+        </authentication-provider>
+    </authentication-manager>
+	
+	<!-- <authentication-manager>
 		<authentication-provider>
 			<user-service>
 				<user name="guest" password="guest" authorities="ROLE_USER"/>
 			</user-service>
 		</authentication-provider>
-	</authentication-manager>
+	</authentication-manager> -->
 </beans:beans>
