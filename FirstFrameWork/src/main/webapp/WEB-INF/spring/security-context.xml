@@ -36,7 +36,7 @@
 		
 	</http>
 	
-	<beans:bean id="customUserDetailsService" class="com.americano.foundation.login.service.Impl.CustomUserDetailsService" />
+	<beans:bean id="customUserDetailsService" class="com.americano.foundation.login.service.Impl.CustomUserDetailsServiceImpl" />
 	
 	<authentication-manager>
         <authentication-provider user-service-ref="customUserDetailsService">

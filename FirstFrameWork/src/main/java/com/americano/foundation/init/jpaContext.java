@@ -1,4 +1,5 @@
-package com.americano.foundation.config;
+/*
+package com.americano.foundation.init;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,3 +31,4 @@ public class jpaContext {
 	}
     
 }
+*/

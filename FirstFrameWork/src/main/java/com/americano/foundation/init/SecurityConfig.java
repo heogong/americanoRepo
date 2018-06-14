@@ -1,4 +1,5 @@
-package com.americano.foundation.config;
+package com.americano.foundation.init;
+
 
 import javax.sql.DataSource;
 
@@ -9,17 +10,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import com.americano.foundation.login.service.Impl.CustomUserDetailsService;
+import com.americano.foundation.login.service.Impl.CustomUserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-public class securityContext extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DataSource dataSource;
 
-	@Autowired
-	private CustomUserDetailsService customUserDetailsService;
+	private CustomUserDetailsServiceImpl customUserDetailsService;
 	
 	protected void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource);
@@ -42,5 +42,4 @@ public class securityContext extends WebSecurityConfigurerAdapter {
 			.logout()
 			.logoutSuccessUrl("/home");
 	}
-
 }

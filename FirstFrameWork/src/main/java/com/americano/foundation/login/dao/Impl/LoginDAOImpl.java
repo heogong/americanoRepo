@@ -18,16 +18,12 @@ import com.americano.foundation.user.domain.UserDomain;
 @Repository
 public class LoginDAOImpl implements LoginDAO {
 	
-	/*@Autowired
-	private SessionFactory sessionFactory;*/
-	
 	@Autowired
-	private EntityManagerFactory entityManagerFactory;
+	private SessionFactory sessionFactory;
+	
 	
 	private Session getSession() {
-		Session session = entityManagerFactory.unwrap(Session.class);
-		
-		return session;
+		return sessionFactory.getCurrentSession();
 	}
 	
 	public UserDomain getUser(String userId) {

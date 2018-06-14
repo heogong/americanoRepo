@@ -20,7 +20,7 @@
     <!-- <bean id="hibernateJpaVendorAdapter"
         class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
         <property name="showSql" value="true" />
-    </bean> -->
+    </bean>  -->
 
     <bean id="entityManagerFactory"
         class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -28,17 +28,18 @@
         <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
         <property name="packagesToScan" value="com.americano.foundation" />
     </bean>
-
+	
 	<!-- 트랜잭션 어노테이션을 활용할때 사용 
 		트랜잭션 관련 java를 구성해야 함 
 		<tx:annotation-driven /> 
 	-->
 	<tx:annotation-driven />
 	
-    <!-- JPA 전용 TransactionManager 생성 -->
+    <!-- JPA 전용 TransactionManager 생성     -->
     <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
+
 
 	<!-- JPA Repository 설정 -->
     <jpa:repositories base-package="com.americano.foundation"
@@ -57,5 +58,6 @@
             expression="execution(* com.americano.foundation..service..*.*(..))" />
         <aop:advisor advice-ref="txAdvice" pointcut-ref="requiredTx" />
     </aop:config>
+    
 
 </beans>
