@@ -1,4 +1,3 @@
-/*
 package com.americano.foundation.config;
 
 import javax.sql.DataSource;
@@ -10,7 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import com.americano.foundation.login.service.CustomUserDetailsService;
+import com.americano.foundation.login.service.Impl.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -30,18 +29,18 @@ public class securityContext extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.userDetailsService(customUserDetailsService)
 			.authorizeRequests()
-			.antMatchers("/sec/moderation.html").hasRole("ADMIN")
-			.antMatchers("/admin/**").hasRole("SYSTEM")
+			.antMatchers("/login").permitAll()
+			.antMatchers("/home").hasRole("SYSTEM")
+			.antMatchers("/**").permitAll()
 			.and()
 			.formLogin()
 			.loginPage("/login")
-			.defaultSuccessUrl("/home")
-			.failureUrl("/error-login.html")
+			.defaultSuccessUrl("/success-login")
+			.failureUrl("/error-login")
 			.permitAll()
 			.and()
 			.logout()
-			.logoutSuccessUrl("/index.html");
+			.logoutSuccessUrl("/home");
 	}
 
 }
-*/
