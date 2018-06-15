@@ -1,3 +1,4 @@
+/*
 package com.americano.foundation.init;
 
 import org.springframework.context.annotation.Bean;
@@ -9,7 +10,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration
 @EnableWebMvc
-//@ComponentScan("com.americano.foundation.login.controller")
+
 @ComponentScan("com.americano.foundation")
 public class WebAppConfig {
 	
@@ -22,3 +23,4 @@ public class WebAppConfig {
 		return resolver;
 	}
 }
+*/

@@ -1,8 +1,9 @@
-package com.americano.foundation.user.biz.impl;
+package com.americano.foundation.user.impl;
 
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +15,7 @@ import com.americano.foundation.user.repository.UserRepository;
 @Service
 public class UserBizImpl implements UserBiz {
 	
-	@Autowired
+	@Qualifier
 	private UserRepository userRepository;
 	
 	//@Autowired

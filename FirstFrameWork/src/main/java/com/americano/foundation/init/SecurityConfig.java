@@ -4,6 +4,7 @@ package com.americano.foundation.init;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DataSource dataSource;
-
+	
 	private CustomUserDetailsServiceImpl customUserDetailsService;
 	
 	protected void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception {

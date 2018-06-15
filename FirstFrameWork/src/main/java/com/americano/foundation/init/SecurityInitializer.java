@@ -1,3 +1,4 @@
+/*
 package com.americano.foundation.init;
 
 import org.springframework.core.annotation.Order;
@@ -7,3 +8,4 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
 public class SecurityInitializer extends AbstractSecurityWebApplicationInitializer {
 
 }
+*/

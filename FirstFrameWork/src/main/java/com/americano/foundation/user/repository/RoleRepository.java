@@ -8,7 +8,7 @@ import com.americano.foundation.user.domain.RoleDomain;
 /**
  * 
  * @author heogong
- * CrudRepository : ±âº» CRUD / JpaRepository : CrudRepository Æ÷ÇÔ(ÆäÀÌÂ¡ Áö¿ø)
+ * CrudRepository : ï¿½âº» CRUD / JpaRepository : CrudRepository ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½ï¿½)
  */
 @Repository
 public interface RoleRepository extends JpaRepository<RoleDomain, Integer> {

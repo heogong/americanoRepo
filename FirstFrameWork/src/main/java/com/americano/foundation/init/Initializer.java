@@ -1,3 +1,4 @@
+/*
 package com.americano.foundation.init;
 
 import org.springframework.core.annotation.Order;
@@ -22,3 +23,4 @@ public class Initializer extends AbstractAnnotationConfigDispatcherServletInitia
 	}
 
 }
+*/

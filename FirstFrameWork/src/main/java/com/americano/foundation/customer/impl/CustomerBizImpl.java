@@ -1,6 +1,9 @@
-package com.americano.foundation.customer.biz.impl;
+package com.americano.foundation.customer.impl;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.americano.foundation.customer.biz.CustomerBiz;
@@ -8,9 +11,10 @@ import com.americano.foundation.customer.domain.CustomerDomain;
 import com.americano.foundation.customer.repository.CustomerRepository;
 
 @Service
-public class CustomerBizImpl implements CustomerBiz{
+@Transactional
+public class CustomerBizImpl implements CustomerBiz {
 	
-	@Autowired
+	@Qualifier
 	private CustomerRepository customerRepository;
 	
 	@Override

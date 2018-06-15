@@ -6,17 +6,36 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.annotation.Resource;
+
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 
-
+@PropertySource("classpath:application.properties")
 public class testMain {
-	@Test
+	@Resource
+	private Environment env;
+	
+	private static final String PROPERTY_NAME_DATABASE_URL = "db.url";
+	
+	@Autowired 
+	DefaultListableBeanFactory df;
+	
+	//@Test
 	public void doTest() throws SQLException {
+		
+		 
 		Connection connection = null;
 		PreparedStatement pstmt = null;
-		// Statement stmt = null;  <= Statement 보다는 PreparedStatement를 많이 쓴다고 한다
+
 		ResultSet rs = null;
 
+		System.out.println("PROPERTY_NAME_DATABASE_URL : "+env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
+		System.out.println("PROPERTY_NAME_DATABASE_URL : "+env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
+		System.out.println("PROPERTY_NAME_DATABASE_URL : "+env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -35,6 +54,14 @@ public class testMain {
 			System.out.println(rs.getString("name"));
 		}
 
+		
+	}
+	
+	@Test
+	public void bean() {
+		for(String name : df.getBeanDefinitionNames()) { 
+			System.out.println(name + " \t " + df.getBean(name).getClass().getName());
+		}
 		
 	}
 	

@@ -40,10 +40,8 @@
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
 
-
 	<!-- JPA Repository 설정 -->
-    <jpa:repositories base-package="com.americano.foundation"
-        transaction-manager-ref="txManager" />
+    <jpa:repositories base-package="com.americano.foundation" transaction-manager-ref="txManager" />
 
     <!-- Transaction Advice 설정 -->
     <tx:advice id="txAdvice" transaction-manager="txManager">

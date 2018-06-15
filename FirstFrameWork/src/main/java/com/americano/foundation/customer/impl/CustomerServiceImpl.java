@@ -1,4 +1,4 @@
-package com.americano.foundation.customer.service.impl;
+package com.americano.foundation.customer.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

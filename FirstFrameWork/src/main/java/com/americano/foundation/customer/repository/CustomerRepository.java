@@ -5,6 +5,11 @@ import org.springframework.stereotype.Repository;
 
 import com.americano.foundation.customer.domain.CustomerDomain;
 
+/**
+ * 
+ * @author heogong
+ * CrudRepository :  CRUD / JpaRepository : CrudRepository
+ */
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerDomain, Integer> {
 	 
