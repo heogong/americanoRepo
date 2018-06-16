@@ -1,5 +1,6 @@
 package com.issac.foundation.user.model;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,92 +14,146 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
 @Entity
-@Table(name = "user")
+@Table(name = "TB_USER")
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "user_id")
-	private int id;
+	@Column(name = "USER_SEQ")
+	private int seq;
 	
-	@Column(name = "email")
-	@Email(message = "*Please provide a valid Email")
-	@NotEmpty(message = "*Please provide an email")
-	private String email;
+	@Column(name = "USER_ID")
+	@NotEmpty(message = "*Please provide an ID")
+	private String userId;
 	
-	@Column(name = "password")
-	@Length(min = 5, message = "*Your password must have at least 5 characters")
+	@Column(name = "USER_PASSWD")
+	//@Length(min = 5, message = "*Your password must have at least 5 characters")
 	@NotEmpty(message = "*Please provide your password")
-	
 	@Transient
-	private String password;
-	@Column(name = "name")
+	private String userPasswd;
+	
+	@Column(name = "USER_NM")
 	@NotEmpty(message = "*Please provide your name")
+	private String userNm;
 	
-	private String name;
-	@Column(name = "last_name")
-	@NotEmpty(message = "*Please provide your last name")
+	@Column(name = "USER_LV")
+	private int userLv;
 	
-	private String lastName;
-	@Column(name = "active")
+	@Column(name = "USER_AGE")
+	private int userAge;
 	
-	private int active;
+	@Column(name = "USER_TEL")
+	private String userTel;
+	
+	@Column(name = "USER_ST")
+	private int userSt;
+	
+	@Column(name = "USER_FL")
+	private int userFl;
+	
+	@Column(name = "INST_DT")
+	private Date instDt;
+	
+	@Column(name = "MOD_DT")
+	private Date modDt;
+	
+	
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JoinTable(name = "TB_USER_ROLE", joinColumns = @JoinColumn(name = "USER_SEQ"), inverseJoinColumns = @JoinColumn(name = "ROLE_SEQ"))
 	private Set<Role> roles;
 
-	public int getId() {
-		return id;
+
+	public int getSeq() {
+		return seq;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setSeq(int seq) {
+		this.seq = seq;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserPasswd() {
+		return userPasswd;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserPasswd(String userPasswd) {
+		this.userPasswd = userPasswd;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getUserNm() {
+		return userNm;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setUserNm(String userNm) {
+		this.userNm = userNm;
 	}
 
-	public String getEmail() {
-		return email;
+	public int getUserLv() {
+		return userLv;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserLv(int userLv) {
+		this.userLv = userLv;
 	}
 
-	public int getActive() {
-		return active;
+	public int getUserAge() {
+		return userAge;
 	}
 
-	public void setActive(int active) {
-		this.active = active;
+	public void setUserAge(int userAge) {
+		this.userAge = userAge;
+	}
+
+	public String getUserTel() {
+		return userTel;
+	}
+
+	public void setUserTel(String userTel) {
+		this.userTel = userTel;
+	}
+
+	public int getUserSt() {
+		return userSt;
+	}
+
+	public void setUserSt(int userSt) {
+		this.userSt = userSt;
+	}
+
+	public int getUserFl() {
+		return userFl;
+	}
+
+	public void setUserFl(int userFl) {
+		this.userFl = userFl;
+	}
+
+	public Date getInstDt() {
+		return instDt;
+	}
+
+	public void setInstDt(Date instDt) {
+		this.instDt = instDt;
+	}
+
+	public Date getModDt() {
+		return modDt;
+	}
+
+	public void setModDt(Date modDt) {
+		this.modDt = modDt;
 	}
 
 	public Set<Role> getRoles() {

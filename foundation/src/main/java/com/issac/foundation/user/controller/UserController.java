@@ -36,15 +36,22 @@ public class UserController {
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
-		User userExists = loginService.findUserByEmail(user.getEmail());
+		User userExists = loginService.findUserByUserId(user.getUserId());
 		if (userExists != null) {
+			System.out.println("============== userExists ============== ");
 			bindingResult
-					.rejectValue("email", "error.user",
-							"There is already a user registered with the email provided");
+					.rejectValue("ID", "error.user",
+							"There is already a user registered with the ID provided");
 		}
 		if (bindingResult.hasErrors()) {
+			System.out.println("============== bindingResult.hasErrors() ============== ");
+			System.out.println("toString : "+bindingResult.toString());
+			System.out.println("errorCount : "+bindingResult.getErrorCount());
+			System.out.println("objectName : "+bindingResult.getObjectName());
+			
 			modelAndView.setViewName("registration");
 		} else {
+			System.out.println("============== pass! ============== ");
 			UserService.saveUser(user);
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			modelAndView.addObject("user", new User());

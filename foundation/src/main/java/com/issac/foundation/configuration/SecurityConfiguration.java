@@ -30,8 +30,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private String rolesQuery;
 
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth)
-			throws Exception {
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		
 		auth.
 			jdbcAuthentication()
 				.usersByUsernameQuery(usersQuery)
@@ -42,7 +42,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
 		http.
 			authorizeRequests()
 				.antMatchers("/").permitAll()
@@ -52,8 +51,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.authenticated().and().csrf().disable().formLogin()
 				.loginPage("/login").failureUrl("/login?error=true")
 				.defaultSuccessUrl("/admin/home")
-				.usernameParameter("email")
-				.passwordParameter("password")
+				.usernameParameter("userId")
+				.passwordParameter("userPasswd")
 				.and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/").and().exceptionHandling()

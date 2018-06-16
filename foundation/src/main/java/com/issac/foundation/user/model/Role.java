@@ -8,21 +8,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "role")
+@Table(name = "TB_ROLE")
 public class Role {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="role_id")
-	private int id;
+	@Column(name="ROLE_SEQ")
+	private int roleSeq;
 	
-	@Column(name="role")
+	@Column(name="ROLE")
 	private String role;
 	
-	public int getId() {
-		return id;
+	public int getRoleSeq() {
+		return roleSeq;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setRoleSeq(int roleSeq) {
+		this.roleSeq = roleSeq;
 	}
 	public String getRole() {
 		return role;

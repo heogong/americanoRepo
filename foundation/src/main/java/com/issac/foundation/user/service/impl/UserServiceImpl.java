@@ -1,6 +1,7 @@
 package com.issac.foundation.user.service.impl;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,15 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void saveUser(User user) {
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setActive(1);
+		user.setUserPasswd(bCryptPasswordEncoder.encode(user.getUserPasswd()));
+        user.setUserFl(1);
+        
+        user.setUserLv(2);
+        user.setUserAge(0);
+        user.setUserTel("010-1111-1111");
+        user.setUserSt(1000);
+        user.setInstDt(new Date());
+        
         Role userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 		userRepository.save(user);

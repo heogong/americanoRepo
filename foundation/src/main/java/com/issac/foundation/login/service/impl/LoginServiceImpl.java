@@ -19,7 +19,7 @@ public class LoginServiceImpl implements LoginService {
 	
 	
 	@Override
-	public User findUserByEmail(String email) {
-		return userRepository.findByEmail(email);
+	public User findUserByUserId(String userId) {
+		return userRepository.findByUserId(userId);
 	}
 }
