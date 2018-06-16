@@ -29,6 +29,7 @@
         
         <!-- CGLib (Spring Security 표현식 언어) 버전 -->
         <cglib-version>3.1</cglib-version>
+        
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -47,6 +48,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
 				
@@ -139,17 +145,23 @@
 			<scope>test</scope>
 		</dependency>
 		
-		<!-- JPA, 하이버네이트 -->
+		<!-- JPA/하이버네이트 -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${jpa.version}</version>
 		</dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
+        <dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
         
         <!-- MySql -->
         <dependency>
@@ -190,7 +202,7 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-
+		
 	</dependencies>
 	
 	<!-- repositories 사용법 참고

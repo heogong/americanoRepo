@@ -3,6 +3,8 @@ package com.issac.foundation.user.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +40,6 @@ public class UserController {
 		ModelAndView modelAndView = new ModelAndView();
 		User userExists = loginService.findUserByUserId(user.getUserId());
 		if (userExists != null) {
-			System.out.println("============== userExists ============== ");
 			bindingResult
 					.rejectValue("ID", "error.user",
 							"There is already a user registered with the ID provided");
@@ -51,13 +52,14 @@ public class UserController {
 			
 			modelAndView.setViewName("registration");
 		} else {
-			System.out.println("============== pass! ============== ");
 			UserService.saveUser(user);
+			
 			modelAndView.addObject("successMessage", "User has been registered successfully");
 			modelAndView.addObject("user", new User());
 			modelAndView.setViewName("registration");
 			
 		}
+		
 		return modelAndView;
 	}
 }
