@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -32,12 +34,12 @@ public class UserServiceImpl implements UserService {
 	public void saveUser(User user) {
 		user.setUserPasswd(bCryptPasswordEncoder.encode(user.getUserPasswd()));
         user.setUserFl(1);
+        user.setUserSt(1000);
+        user.setInstDt(new Date());
         
         user.setUserLv(2);
         user.setUserAge(0);
         user.setUserTel("010-1111-1111");
-        user.setUserSt(1000);
-        user.setInstDt(new Date());
         
         Role userRole = roleRepository.findByRole("ADMIN");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
@@ -45,4 +47,10 @@ public class UserServiceImpl implements UserService {
 		userRepository.save(user);
 	}
 
+
+	@Override
+	public Page<User> listUser(Pageable pageable) {
+		
+		return userRepository.findByUserFl(1, pageable);
+	}
 }
