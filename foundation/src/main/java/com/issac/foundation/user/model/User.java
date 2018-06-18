@@ -13,8 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
 
@@ -25,7 +25,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "USER_SEQ")
-	private int seq;
+	private Long seq;
 	
 	@Column(name = "USER_ID")
 	@NotEmpty(message = "*Please provide an ID")
@@ -33,7 +33,7 @@ public class User {
 	
 	@Column(name = "USER_PASSWD")
 	//@Length(min = 5, message = "*Your password must have at least 5 characters")
-	@NotEmpty(message = "*Please provide your password")
+	//@NotNull(message = "*Please provide your password")
 	@Transient
 	private String userPasswd;
 	
@@ -68,11 +68,11 @@ public class User {
 	private Set<Role> roles;
 
 
-	public int getSeq() {
+	public Long getSeq() {
 		return seq;
 	}
 
-	public void setSeq(int seq) {
+	public void setSeq(Long seq) {
 		this.seq = seq;
 	}
 

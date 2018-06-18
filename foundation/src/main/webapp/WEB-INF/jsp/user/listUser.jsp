@@ -102,20 +102,35 @@ function getList(currentPage) {
 	$("#page").val(currentPage - 1);
 	$("#target").submit();
 }
+
+function editUser(seq) {
+	$("#seq").val(seq);
+	$("#target2").attr("action", "/findUser").submit();
+}
+
+function deleteUser(seq) {
+	$("#seq").val(seq);
+	$("#target2").attr("action", "/deleteUser").submit();
+}
 </script>
 <body>
 	
-<c:forEach var="user" items="${user.content}">
-	<span>${user.userId}</span>&nbsp;&nbsp;
-	<span>${user.userNm}</span>&nbsp;&nbsp;
-	<span>${user.userTel}</span>
-	<div></div>
-</c:forEach>
-	<span id="pageNav"></span>
+	<c:forEach var="user" items="${user.content}">
+		<span onclick="editUser(${user.seq});">${user.userId}</span>&nbsp;&nbsp;
+		<span>${user.userNm}</span>&nbsp;&nbsp;
+		<span>${user.userTel}</span>
+		<span><input type="button" value="삭제" onclick="deleteUser(${user.seq});"></span>
+		<div></div>
+	</c:forEach>
+		<span id="pageNav"></span>
+		
+	<form id="target" action="/getListUser" method="post">
+		<input type="hidden" name="page" id="page">
+	</form>
 	
-<form id="target" action="/getListUser" method="post">
-	<input type="hidden" name="page" id="page">
-</form>
+	<form id="target2" action="" method="post">
+		<input type="hidden" name="seq" id="seq">
+	</form>
 
 </body>
 </html>

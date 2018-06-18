@@ -3,6 +3,9 @@ package com.issac.foundation.user.service.impl;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,7 +19,9 @@ import com.issac.foundation.user.repository.RoleRepository;
 import com.issac.foundation.user.repository.UserRepository;
 import com.issac.foundation.user.service.UserService;
 
+import antlr.Parser;
 
+@Transactional
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
@@ -28,7 +33,6 @@ public class UserServiceImpl implements UserService {
 	
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
 
 	@Override
 	public void saveUser(User user) {
@@ -47,10 +51,44 @@ public class UserServiceImpl implements UserService {
 		userRepository.save(user);
 	}
 
-
 	@Override
 	public Page<User> listUser(Pageable pageable) {
 		
 		return userRepository.findByUserFl(1, pageable);
+	}
+
+
+	@Override
+	public Optional<User> findUser(Long seq) {
+		
+		return userRepository.findById(seq);
+	}
+
+
+	@Override
+	public void editUser(User user) {
+		// 변경 될 db 데이터 조회
+		Optional<User> dbUser = userRepository.findById(user.getSeq());
+		User existUser = dbUser.get(); 
+		
+		// set value
+		existUser.setUserNm(user.getUserNm()); 
+		existUser.setUserTel(user.getUserTel());
+		existUser.setModDt(new Date());
+		existUser.setRoles(user.getRoles());
+		
+		userRepository.save(existUser);
+		
+	}
+
+	@Override
+	public void deleteUser(Long Seq) {
+		
+		Optional<User> dbUser = userRepository.findById(Seq);
+		User existUser = dbUser.get();
+		
+		existUser.setUserFl(0);
+		
+		userRepository.save(existUser);
 	}
 }
