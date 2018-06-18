@@ -1,6 +1,5 @@
 package com.issac.foundation.user.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -26,7 +25,7 @@ import com.issac.foundation.user.service.RoleService;
 import com.issac.foundation.user.service.UserService;
 
 @Controller
-//@RequestMapping("/member")
+@RequestMapping("/user")
 public class UserController {
 	
 	@Autowired

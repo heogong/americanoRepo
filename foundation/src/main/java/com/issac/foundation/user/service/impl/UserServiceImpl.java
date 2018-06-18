@@ -82,13 +82,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void deleteUser(Long Seq) {
+	public void deleteUser(Long seq) {
 		
-		Optional<User> dbUser = userRepository.findById(Seq);
+		/*Optional<User> dbUser = userRepository.findById(seq);
 		User existUser = dbUser.get();
 		
 		existUser.setUserFl(0);
 		
-		userRepository.save(existUser);
+		userRepository.save(existUser);*/
+		
+		userRepository.deleteById(seq);
 	}
 }

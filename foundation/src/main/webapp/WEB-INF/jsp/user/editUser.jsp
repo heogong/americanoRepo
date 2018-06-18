@@ -15,7 +15,7 @@ $(document).ready(function() {
 });
 </script>
 <body>
-<form action="/editUser"  method="post">
+<form action="/user/editUser"  method="post">
 	<input type="text" name="userNm" value="${user.getUserNm()}">
 	<input type="text" name="userId" value="${user.getUserId()}">
 	<input type="text" name="userAge" value="${user.getUserAge()}">

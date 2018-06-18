@@ -105,12 +105,12 @@ function getList(currentPage) {
 
 function editUser(seq) {
 	$("#seq").val(seq);
-	$("#target2").attr("action", "/findUser").submit();
+	$("#target2").attr("action", "/user/findUser").submit();
 }
 
 function deleteUser(seq) {
 	$("#seq").val(seq);
-	$("#target2").attr("action", "/deleteUser").submit();
+	$("#target2").attr("action", "/user/deleteUser").submit();
 }
 </script>
 <body>
@@ -124,7 +124,7 @@ function deleteUser(seq) {
 	</c:forEach>
 		<span id="pageNav"></span>
 		
-	<form id="target" action="/getListUser" method="post">
+	<form id="target" action="/user/getListUser" method="post">
 		<input type="hidden" name="page" id="page">
 	</form>
 	

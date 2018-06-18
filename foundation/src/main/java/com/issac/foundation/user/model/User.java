@@ -1,11 +1,14 @@
 package com.issac.foundation.user.model;
 
+import java.security.acl.Permission;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -66,7 +69,6 @@ public class User {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "TB_USER_ROLE", joinColumns = @JoinColumn(name = "USER_SEQ"), inverseJoinColumns = @JoinColumn(name = "ROLE_SEQ"))
 	private Set<Role> roles;
-
 
 	public Long getSeq() {
 		return seq;
