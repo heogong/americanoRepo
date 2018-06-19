@@ -8,7 +8,20 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
+<script>
+$(document).ready(function() {
+	
+	var app = new Vue({
+		el: '#app',
+		data: {
+			message: 'æ»≥Á«œººø‰ Vue!'
+		}
+	})
+	
+});
+</script>
 <body>
 	<form action="/registration" method="get">
 		<button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
@@ -27,6 +40,10 @@
 			</div>
 			<button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
 		</form>
+	</div>
+	
+	<div id="app">
+	  {{ message }}
 	</div>
 </body>
 </html>

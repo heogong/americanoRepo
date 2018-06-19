@@ -133,7 +133,7 @@ public class UserController {
 		return modelAndView;
 	}
 	
-	// 사용자 삭제
+	// 사용자 삭제 - 수정이 필요함(제약조건 때문에 DELETE가 안됨) 
 	@RequestMapping(value="/deleteUser")
 	@ResponseBody
 	public ModelAndView deleteUser(@RequestParam("seq") @NotNull Long seq) {
