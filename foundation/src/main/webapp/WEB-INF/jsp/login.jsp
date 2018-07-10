@@ -23,6 +23,7 @@ $(document).ready(function() {
 });
 </script>
 <body>
+	<h3>·Î±×ÀÎ</h1>
 	<form action="/registration" method="get">
 		<button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
 	</form>	

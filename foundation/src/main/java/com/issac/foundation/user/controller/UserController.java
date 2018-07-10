@@ -12,6 +12,8 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +40,7 @@ public class UserController {
 	private RoleService roleService;
 	
 	private static final int DEFAULT_PAGE_NUMBER = 0;
-    private static final int DEFAULT_PAGE_SIZE = 2;
+    private static final int DEFAULT_PAGE_SIZE = 3;
 	
 	@RequestMapping(value="/registration", method = RequestMethod.GET)
 	public ModelAndView registration(){
@@ -144,5 +146,23 @@ public class UserController {
 		modelAndView.setViewName("/user/editUser");
 		
 		return modelAndView;
+	}
+	
+	
+	// AXIOS 테스트 사용자 리스트 
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value="/getAxiosListUser")
+	@ResponseBody
+	public Page<User> getAxiosListUser(@PageableDefault(
+			page = DEFAULT_PAGE_NUMBER,
+			size = DEFAULT_PAGE_SIZE, 
+			sort = "seq", 
+			direction = Direction.DESC
+			) Pageable pageable) {
+		
+		Page<User> user = userService.listUser(pageable);
+		
+		
+		return user;
 	}
 }
