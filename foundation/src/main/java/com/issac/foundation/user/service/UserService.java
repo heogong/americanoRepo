@@ -10,7 +10,7 @@ import com.issac.foundation.user.model.User;
 public interface UserService {
 	public void saveUser(User user);
 	public void editUser(User user);
-	public Page<User> listUser(Pageable pageable);
+	public Page<User> listUser(Pageable pageable, String search);
 	public Optional<User> findUser(Long seq);
 	public void deleteUser (Long Seq);
 }

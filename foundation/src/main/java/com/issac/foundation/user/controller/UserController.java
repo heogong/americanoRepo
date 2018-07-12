@@ -87,11 +87,12 @@ public class UserController {
 			size = DEFAULT_PAGE_SIZE, 
 			sort = "seq", 
 			direction = Direction.DESC
-			) Pageable pageable) {
+			) Pageable pageable
+			, @RequestParam("search") String search) {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
-		Page<User> user = userService.listUser(pageable);
+		Page<User> user = userService.listUser(pageable, search);
 		
 		modelAndView.addObject("user", user);
 		modelAndView.setViewName("/user/listUser");
@@ -157,11 +158,10 @@ public class UserController {
 			page = DEFAULT_PAGE_NUMBER,
 			size = DEFAULT_PAGE_SIZE, 
 			sort = "seq", 
-			direction = Direction.DESC
-			) Pageable pageable) {
+			direction = Direction.DESC) Pageable pageable
+			, @RequestParam(value = "search", required = false) String search) {
 		
-		Page<User> user = userService.listUser(pageable);
-		
+		Page<User> user = userService.listUser(pageable, search);
 		
 		return user;
 	}

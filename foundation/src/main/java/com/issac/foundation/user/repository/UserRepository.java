@@ -13,5 +13,5 @@ import com.issac.foundation.user.model.User;
 @Repository("userRepository")
 public interface UserRepository extends JpaRepository<User, Long> {
 	User findByUserId(String userId);
-	Page<User> findByUserFl(int userFl, Pageable pageable);
+	Page<User> findByUserFlAndUserIdLike(int userFl, Pageable pageable, String search);
 }
