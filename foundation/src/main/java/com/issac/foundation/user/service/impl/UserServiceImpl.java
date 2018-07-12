@@ -53,8 +53,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Page<User> listUser(Pageable pageable, String search) {
-		
-		return userRepository.findByUserFlAndUserIdLike(1, pageable, search);
+		return userRepository.findByUserFlAndUserIdContaining(1, pageable, search);
 	}
 
 

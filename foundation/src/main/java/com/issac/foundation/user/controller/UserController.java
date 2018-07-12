@@ -80,15 +80,16 @@ public class UserController {
 	}
 	
 	// 사용자 리스트 
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value="/getListUser")
 	@ResponseBody
-	public ModelAndView getListUser(@PageableDefault(
+	public Page<User> getListUser(@PageableDefault(
 			page = DEFAULT_PAGE_NUMBER,
 			size = DEFAULT_PAGE_SIZE, 
 			sort = "seq", 
 			direction = Direction.DESC
 			) Pageable pageable
-			, @RequestParam("search") String search) {
+			, @RequestParam(value = "search", required = false) String search) {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -97,7 +98,7 @@ public class UserController {
 		modelAndView.addObject("user", user);
 		modelAndView.setViewName("/user/listUser");
 		
-		return modelAndView;
+		return user;
 	}
 	
 	// 사용자 조회
@@ -147,22 +148,5 @@ public class UserController {
 		modelAndView.setViewName("/user/editUser");
 		
 		return modelAndView;
-	}
-	
-	
-	// AXIOS 테스트 사용자 리스트 
-	@CrossOrigin(origins = "*")
-	@RequestMapping(value="/getAxiosListUser")
-	@ResponseBody
-	public Page<User> getAxiosListUser(@PageableDefault(
-			page = DEFAULT_PAGE_NUMBER,
-			size = DEFAULT_PAGE_SIZE, 
-			sort = "seq", 
-			direction = Direction.DESC) Pageable pageable
-			, @RequestParam(value = "search", required = false) String search) {
-		
-		Page<User> user = userService.listUser(pageable, search);
-		
-		return user;
 	}
 }
