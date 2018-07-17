@@ -30,6 +30,9 @@ public class User {
 	@Column(name = "USER_SEQ")
 	private Long seq;
 	
+	@Column(name = "COMP_SEQ")
+	private Long compSeq;
+	
 	@Column(name = "USER_ID")
 	@NotEmpty(message = "*Please provide an ID")
 	private String userId;
@@ -76,6 +79,14 @@ public class User {
 
 	public void setSeq(Long seq) {
 		this.seq = seq;
+	}
+	
+	public Long getCompSeq() {
+		return compSeq;
+	}
+
+	public void setCompSeq(Long compSeq) {
+		this.compSeq = compSeq;
 	}
 
 	public String getUserId() {
