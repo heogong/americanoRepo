@@ -28,17 +28,17 @@ public class UserApplicationTests {
 		/*List<User> user = userRepository.findAll();
 		
 		for(User aa : user) {
-			System.out.println(aa.getUserNm());
-		}*/
-		
-		List<Company> comp = (List<Company>) companyRepository.findAll();
-		
-		List<Company> comp2 = companyRepository.findByCompSeq((long) 1);
-		
+			System.out.println(aa.getUser
+		}Nm());
+	}*/
+
+	List<Company> comp = (List<Company>) companyRepository.findAll();
+
+	List<Company> comp2 = companyRepository.findByCompSeq((long) 2);
+
 		for(Company aa : comp2) {
-			for(User u: aa.getUsers()) {
-				System.out.println("userId : "+u.getUserId());
-			}
+		for(User u: aa.getUsers()) {
+			System.out.println("userId : "+u.getUserId());
 		}
 		
 	}

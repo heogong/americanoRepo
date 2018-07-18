@@ -46,12 +46,10 @@ public class Company {
 	@Column(name = "MOD_DT")
 	private Date modDt;
 	
-	
 	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="COMP_SEQ")
 	private Set<User> users;
 	
-
 	public Long getCompSeq() {
 		return compSeq;
 	}
