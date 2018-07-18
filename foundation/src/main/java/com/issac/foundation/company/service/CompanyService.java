@@ -9,5 +9,5 @@ import com.issac.foundation.company.model.Company;
 import com.issac.foundation.user.model.User;
 
 public interface CompanyService {
-	public List<Company> listCompany();
+    List<Company> getListCompany();
 }

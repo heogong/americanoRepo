@@ -32,14 +32,14 @@ public class UserApplicationTests {
 		}Nm());
 	}*/
 
-	List<Company> comp = (List<Company>) companyRepository.findAll();
+		List<Company> comp = (List<Company>) companyRepository.findAll();
 
-	List<Company> comp2 = companyRepository.findByCompSeq((long) 2);
+		List<Company> comp2 = companyRepository.findByCompSeq((long) 2);
 
-		for(Company aa : comp2) {
-		for(User u: aa.getUsers()) {
-			System.out.println("userId : "+u.getUserId());
+		for (Company aa : comp) {
+			for (User u : aa.getUsers()) {
+				System.out.println("userId : " + u.getUserId());
+			}
 		}
-		
 	}
 }

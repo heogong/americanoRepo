@@ -46,7 +46,7 @@ public class Company {
 	@Column(name = "MOD_DT")
 	private Date modDt;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="COMP_SEQ")
 	private Set<User> users;
 	
