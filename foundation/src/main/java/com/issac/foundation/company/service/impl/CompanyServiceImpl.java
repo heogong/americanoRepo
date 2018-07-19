@@ -18,7 +18,6 @@ public class CompanyServiceImpl implements CompanyService{
 	@Override
 	public List<Company> getListCompany() {
 
-		return (List<Company>) companyRepository.findAll();
+		return companyRepository.findByOrderByCompSeqDesc();
 	}
-
 }
