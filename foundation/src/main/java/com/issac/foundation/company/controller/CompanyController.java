@@ -5,6 +5,7 @@ import com.issac.foundation.company.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,4 +31,16 @@ public class CompanyController {
 
         return comp;
     }
+
+    @CrossOrigin(origins ="*")
+    @RequestMapping(value="/createCompany")
+    public Company createCompany(@ModelAttribute Company company) {
+
+//        System.out.println("회사이름 : "+company.getCompNm());
+//        System.out.println("회사대표 : "+company.getCompOwner());
+//        System.out.println("회사번호 : "+company.getCompTel());
+
+        return companyService.createCompany(company);
+    }
+
 }
