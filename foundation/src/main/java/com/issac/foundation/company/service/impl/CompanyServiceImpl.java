@@ -23,17 +23,16 @@ public class CompanyServiceImpl implements CompanyService{
 	}
 
 	@Override
-	public Company createCompany(Company company) {
+	public void createCompany(Company company) {
 		Company newComp = new Company();
 
 		newComp.setCompNm(company.getCompNm());
 		newComp.setCompOwner(company.getCompOwner());
 		newComp.setCompTel(company.getCompTel());
+		newComp.setCompAddr(company.getCompAddr());
 		newComp.setCompFl(1);
 		newComp.setInstDt(new Date());
 
-		//companyRepository.save(newComp);
-
-		return companyRepository.save(newComp);
+		companyRepository.save(newComp);
 	}
 }

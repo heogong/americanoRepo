@@ -36,20 +36,23 @@ public class Company {
 	
 	@Column(name = "COMP_TEL")
 	private String compTel;
-	
+
+	@Column(name = "COMP_ADDR")
+	private String compAddr;
+
 	@Column(name = "COMP_FL")
 	private int compFl;
-	
+
 	@Column(name = "INST_DT")
 	private Date instDt;
-	
+
 	@Column(name = "MOD_DT")
 	private Date modDt;
-	
+
 	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="COMP_SEQ")
 	private Set<User> users;
-	
+
 	public Long getCompSeq() {
 		return compSeq;
 	}
@@ -112,5 +115,13 @@ public class Company {
 
 	public void setUsers(Set<User> users) {
 		this.users = users;
+	}
+
+	public String getCompAddr() {
+		return compAddr;
+	}
+
+	public void setCompAddr(String compAddr) {
+		this.compAddr = compAddr;
 	}
 }

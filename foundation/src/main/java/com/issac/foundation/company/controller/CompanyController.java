@@ -34,13 +34,10 @@ public class CompanyController {
 
     @CrossOrigin(origins ="*")
     @RequestMapping(value="/createCompany")
-    public Company createCompany(@ModelAttribute Company company) {
+    @ResponseBody
+    public void createCompany(@ModelAttribute Company company) {
 
-//        System.out.println("회사이름 : "+company.getCompNm());
-//        System.out.println("회사대표 : "+company.getCompOwner());
-//        System.out.println("회사번호 : "+company.getCompTel());
-
-        return companyService.createCompany(company);
+        companyService.createCompany(company);
     }
 
 }
