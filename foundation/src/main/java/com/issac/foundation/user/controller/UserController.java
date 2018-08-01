@@ -1,5 +1,6 @@
 package com.issac.foundation.user.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -137,16 +138,26 @@ public class UserController {
 		return modelAndView;
 	}
 	
-	// 사용자 삭제 - 수정이 필요함(제약조건 때문에 DELETE가 안됨) 
+	// 사용자 삭제 - 수정이 필요함(제약조건 때문에 DELETE가 안됨)
 	@RequestMapping(value="/deleteUser")
 	@ResponseBody
 	public ModelAndView deleteUser(@RequestParam("seq") @NotNull Long seq) {
 		ModelAndView modelAndView = new ModelAndView();
-		
+
 		userService.deleteUser(seq);
-		
+
 		modelAndView.setViewName("/user/editUser");
-		
+
 		return modelAndView;
 	}
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value="/companyUser")
+	@ResponseBody
+	public List<User> companyUser(@RequestParam("compSeq") @NotNull Long compSeq) {
+
+		return userService.companyUser(compSeq);
+	}
+
+
 }

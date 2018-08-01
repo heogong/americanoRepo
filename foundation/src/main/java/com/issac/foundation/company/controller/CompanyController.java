@@ -19,19 +19,7 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
-    // 회사 리스트
-    @CrossOrigin(origins = "*")
-    @RequestMapping(value="/getListCompany")
-    @ResponseBody
-    public List<Company> getListCompany() {
-
-        ModelAndView modelAndView = new ModelAndView();
-
-        List<Company> comp = companyService.getListCompany();
-
-        return comp;
-    }
-
+    // 회사 등록
     @CrossOrigin(origins ="*")
     @RequestMapping(value="/createCompany")
     @ResponseBody
@@ -40,4 +28,21 @@ public class CompanyController {
         companyService.createCompany(company);
     }
 
+    // 회사 리스트
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value="/getListCompany")
+    @ResponseBody
+    public List<Company> getListCompany() {
+
+        return companyService.getListCompany();
+    }
+
+    // 회사 조회
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value="/viewCompany")
+    @ResponseBody
+    public Company viewCompany(@ModelAttribute Company company) {
+
+        return companyService.viewCompany(company);
+    }
 }

@@ -3,6 +3,8 @@ package com.issac.foundation;
 import java.util.Date;
 import java.util.List;
 
+import com.issac.foundation.user.model.Role;
+import com.issac.foundation.user.repository.RoleRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class UserApplicationTests {
 	@Autowired
 	private CompanyRepository companyRepository;
 
+	@Autowired
+	private RoleRepository roleRepository;
+
 	@Test
 	@Transactional
 	@Rollback(value=true)
@@ -36,25 +41,36 @@ public class UserApplicationTests {
 			System.out.println(aa.getUser
 		}Nm());
 	}*/
-//
-//		List<Company> comp = (List<Company>) companyRepository.findAll();
-//
-//		List<Company> comp2 = companyRepository.findByCompSeq((long) 2);
-//
-//		for (Company aa : comp) {
-//			for (User u : aa.getUsers()) {
-//				System.out.println("userId : " + u.getUserId());
-//			}
-//		}
 
-		Company newComp = new Company();
+		//List<Company> comp = (List<Company>) companyRepository.findAll();
 
-		newComp.setCompNm("junit test");
-		newComp.setCompOwner("junit test");
-		newComp.setCompTel("010-0000-1111");
-		newComp.setCompFl(1);
-		newComp.setInstDt(new Date());
+//		Company comp2 = companyRepository.findByCompSeq((long) 2);
+//
+//		System.out.println(comp2.getCompNm());
+//		System.out.println(comp2.getCompTel());
+//		System.out.println(comp2.getCompSeq());
 
-		System.out.println(companyRepository.save(newComp));
+		//Role role = new Role();
+		//role.setRoleLv(2);
+		//role.setRoleSeq(7);
+
+		Role role = roleRepository.findByRoleLv(2);
+		List<User> users = userRepository.findByCompSeqAndUserFlAndRolesOrderBySeqDesc((long) 1, 1, role);
+
+		for(User aa : users) {
+			System.out.println("userId : " +aa.getUserId());
+			System.out.println("userName : "+aa.getUserNm());
+		}
+
+
+//		Company newComp = new Company();
+//
+//		newComp.setCompNm("junit test");
+//		newComp.setCompOwner("junit test");
+//		newComp.setCompTel("010-0000-1111");
+//		newComp.setCompFl(1);
+//		newComp.setInstDt(new Date());
+//
+//		System.out.println(companyRepository.save(newComp));
 	}
 }

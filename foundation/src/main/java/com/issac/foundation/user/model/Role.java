@@ -14,20 +14,31 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="ROLE_SEQ")
 	private int roleSeq;
-	
+
 	@Column(name="ROLE")
 	private String role;
-	
+
+	@Column(name="ROLE_LV")
+	private int roleLv;
+
 	public int getRoleSeq() {
 		return roleSeq;
 	}
 	public void setRoleSeq(int roleSeq) {
 		this.roleSeq = roleSeq;
 	}
+
 	public String getRole() {
 		return role;
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public int getRoleLv() {
+		return roleLv;
+	}
+	public void setRoleLv(int roleLv) {
+		this.roleLv = roleLv;
 	}
 }

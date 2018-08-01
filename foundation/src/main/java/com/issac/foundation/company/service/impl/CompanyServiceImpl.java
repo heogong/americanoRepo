@@ -17,12 +17,6 @@ public class CompanyServiceImpl implements CompanyService{
     private CompanyRepository companyRepository;
 
 	@Override
-	public List<Company> getListCompany() {
-
-		return companyRepository.findByOrderByCompSeqDesc();
-	}
-
-	@Override
 	public void createCompany(Company company) {
 		Company newComp = new Company();
 
@@ -34,5 +28,16 @@ public class CompanyServiceImpl implements CompanyService{
 		newComp.setInstDt(new Date());
 
 		companyRepository.save(newComp);
+	}
+
+	@Override
+	public List<Company> getListCompany() {
+
+		return companyRepository.findByOrderByCompSeqDesc();
+	}
+
+	@Override
+	public Company viewCompany(Company company) {
+		return companyRepository.findByCompSeq(company.getCompSeq());
 	}
 }

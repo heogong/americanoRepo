@@ -1,5 +1,6 @@
 package com.issac.foundation.user.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -13,4 +14,6 @@ public interface UserService {
 	public Page<User> listUser(Pageable pageable, String search);
 	public Optional<User> findUser(Long seq);
 	public void deleteUser (Long Seq);
+
+    List<User> companyUser(Long compSeq);
 }

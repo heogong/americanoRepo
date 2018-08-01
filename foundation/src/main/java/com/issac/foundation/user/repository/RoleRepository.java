@@ -9,4 +9,6 @@ import com.issac.foundation.user.model.Role;
 public interface RoleRepository extends CrudRepository<Role, Integer>{
 	Role findByRole(String role);
 
+	Role findByRoleLv(int lv); //TEST
+
 }

@@ -1,9 +1,6 @@
 package com.issac.foundation.user.service.impl;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Optional;
+import java.util.*;
 
 import javax.transaction.Transactional;
 
@@ -18,8 +15,6 @@ import com.issac.foundation.user.model.User;
 import com.issac.foundation.user.repository.RoleRepository;
 import com.issac.foundation.user.repository.UserRepository;
 import com.issac.foundation.user.service.UserService;
-
-import antlr.Parser;
 
 @Transactional
 @Service("userService")
@@ -91,5 +86,13 @@ public class UserServiceImpl implements UserService {
 		userRepository.save(existUser);*/
 		
 		userRepository.deleteById(seq);
+	}
+
+	//	회사 관리자 사용자 리스트
+	@Override
+	public List<User> companyUser(Long compSeq) {
+
+		Role role = roleRepository.findByRoleLv(2);
+		return userRepository.findByCompSeqAndUserFlAndRolesOrderBySeqDesc(compSeq, 1, role);
 	}
 }
