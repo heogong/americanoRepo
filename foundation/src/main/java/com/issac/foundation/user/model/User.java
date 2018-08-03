@@ -40,8 +40,8 @@ public class User {
 	@Column(name = "USER_LV")
 	private int userLv;
 	
-	@Column(name = "USER_AGE")
-	private int userAge;
+	@Column(name = "USER_BIRTH")
+	private Date userBirth;
 	
 	@Column(name = "USER_TEL")
 	private String userTel;
@@ -111,14 +111,6 @@ public class User {
 		this.userLv = userLv;
 	}
 
-	public int getUserAge() {
-		return userAge;
-	}
-
-	public void setUserAge(int userAge) {
-		this.userAge = userAge;
-	}
-
 	public String getUserTel() {
 		return userTel;
 	}
@@ -167,4 +159,11 @@ public class User {
 		this.roles = roles;
 	}
 
+	public Date getUserBirth() {
+		return userBirth;
+	}
+
+	public void setUserBirth(Date userBirth) {
+		this.userBirth = userBirth;
+	}
 }

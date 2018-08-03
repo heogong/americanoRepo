@@ -37,7 +37,6 @@ public class UserServiceImpl implements UserService {
         user.setInstDt(new Date());
         
         user.setUserLv(2);
-        user.setUserAge(0);
         user.setUserTel("010-1111-1111");
         
         Role userRole = roleRepository.findByRole("ADMIN");

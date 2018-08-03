@@ -6,6 +6,7 @@ import com.issac.foundation.company.model.Company;
 
 public interface CompanyService {
     List<Company> getListCompany();
+
     void createCompany(Company company);
 
     Company viewCompany(Company company);
