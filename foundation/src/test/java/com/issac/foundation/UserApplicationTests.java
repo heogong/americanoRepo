@@ -18,6 +18,10 @@ import com.issac.foundation.user.model.User;
 import com.issac.foundation.user.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.xml.transform.sax.SAXSource;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class UserApplicationTests {
@@ -30,6 +34,9 @@ public class UserApplicationTests {
 
 	@Autowired
 	private RoleRepository roleRepository;
+
+	@PersistenceContext
+	private EntityManager em;
 
 	@Test
 	@Transactional
@@ -54,13 +61,23 @@ public class UserApplicationTests {
 		//role.setRoleLv(2);
 		//role.setRoleSeq(7);
 
-		Role role = roleRepository.findByRoleLv(2);
-		List<User> users = userRepository.findByCompSeqAndUserFlAndRolesOrderBySeqDesc((long) 1, 1, role);
+//		Role role = roleRepository.findByRoleLv(2);
+//		List<User> users = userRepository.findByCompSeqAndUserFlAndRolesOrderBySeqDesc((long) 1, 1, role);
+//
+//		for(User aa : users) {
+//			System.out.println("userId : " +aa.getUserId());
+//			System.out.println("userName : "+aa.getUserNm());
+//		}
 
-		for(User aa : users) {
-			System.out.println("userId : " +aa.getUserId());
-			System.out.println("userName : "+aa.getUserNm());
-		}
+
+//		List<Company> company = companyRepository.findByOrderByCompSeqDesc();
+//
+//
+//		for(Company com : company) {
+//			System.out.println("compname : "+com.getCompNm());
+//			//System.out.println(com.getCompNm() +" : "+com.getUsers().size());
+//		}
+
 
 
 //		Company newComp = new Company();
@@ -72,5 +89,22 @@ public class UserApplicationTests {
 //		newComp.setInstDt(new Date());
 //
 //		System.out.println(companyRepository.save(newComp));
+	}
+
+	@Test
+	@Transactional
+	public void updateTest() {
+		Company cc = companyRepository.findByCompSeq((long) 1);
+
+		System.out.println("owner : " +cc.getCompOwner());
+		cc.setCompOwner("jjjjjjjjjjjj");
+		cc.setModDt(new Date());
+
+		companyRepository.save(cc);
+
+		Company cc2 = companyRepository.findByCompSeq((long) 1);
+
+		System.out.println("owner2 : " +cc2.getCompOwner());
+
 	}
 }

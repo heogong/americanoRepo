@@ -9,4 +9,6 @@ public interface CompanyService {
     void createCompany(Company company);
 
     Company viewCompany(Company company);
+
+    void editCompany(Company company);
 }

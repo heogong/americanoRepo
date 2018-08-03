@@ -45,4 +45,13 @@ public class CompanyController {
 
         return companyService.viewCompany(company);
     }
+
+    // 회사 수정
+    @CrossOrigin(origins ="*")
+    @RequestMapping(value="/editCompany")
+    @ResponseBody
+    public void editCompany(@ModelAttribute Company company) {
+
+        companyService.editCompany(company);
+    }
 }

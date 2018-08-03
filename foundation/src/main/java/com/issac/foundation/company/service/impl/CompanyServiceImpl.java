@@ -40,4 +40,18 @@ public class CompanyServiceImpl implements CompanyService{
 	public Company viewCompany(Company company) {
 		return companyRepository.findByCompSeq(company.getCompSeq());
 	}
+
+	@Override
+	public void editCompany(Company company) {
+
+		Company target = companyRepository.findByCompSeq(company.getCompSeq());
+
+		target.setCompNm(company.getCompNm());
+		target.setCompOwner(company.getCompOwner());
+		target.setCompTel(company.getCompTel());
+		target.setCompAddr(company.getCompAddr());
+		target.setModDt(new Date());
+
+		companyRepository.save(target);
+	}
 }
