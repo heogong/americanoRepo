@@ -121,5 +121,16 @@ public class UserApplicationTests {
 		}
 	}
 
+	@Test
+	public void findRole() {
+
+		Role userRole = roleRepository.findByRole("SYSTEM");
+
+		System.out.println("seq : "+userRole.getRoleSeq());
+		System.out.println("level : "+userRole.getRoleLv());
+	}
+
+
+
 
 }

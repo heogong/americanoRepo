@@ -35,11 +35,10 @@ public class UserServiceImpl implements UserService {
         user.setUserFl(1);
         user.setUserSt(1000);
         user.setInstDt(new Date());
-        
-        user.setUserLv(2);
+        user.setUserLv(Role.LevelType.COMP.getLvNum());
         user.setUserTel("010-1111-1111");
-        
-        Role userRole = roleRepository.findByRole("ADMIN");
+
+		Role userRole = roleRepository.findByRoleLv(Role.LevelType.COMP.getLvNum());
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         
 		userRepository.save(user);
@@ -62,15 +61,15 @@ public class UserServiceImpl implements UserService {
 	public void editUser(User user) {
 		// 변경 될 db 데이터 조회
 		Optional<User> dbUser = userRepository.findById(user.getSeq());
-		User existUser = dbUser.get(); 
+		User updtUser = dbUser.get();
 		
 		// set value
-		existUser.setUserNm(user.getUserNm()); 
-		existUser.setUserTel(user.getUserTel());
-		existUser.setModDt(new Date());
-		existUser.setRoles(user.getRoles());
+		updtUser.setUserNm(user.getUserNm());
+		updtUser.setUserTel(user.getUserTel());
+		updtUser.setModDt(new Date());
+		updtUser.setRoles(user.getRoles());
 		
-		userRepository.save(existUser);
+		userRepository.save(updtUser);
 		
 	}
 
