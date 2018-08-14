@@ -21,6 +21,20 @@ public class Role {
 	@Column(name="ROLE_LV")
 	private int roleLv;
 
+	public enum LevelType {
+		SYSTEM(1), COMP(2), EDU(3), USER(4);
+
+		final private int lvNum;
+
+		public int getLvNum() {
+			return lvNum;
+		}
+
+		private LevelType(int lvNum){
+			this.lvNum = lvNum;
+		}
+	}
+
 	public int getRoleSeq() {
 		return roleSeq;
 	}

@@ -90,8 +90,7 @@ public class UserServiceImpl implements UserService {
 	//	회사 관리자 사용자 리스트
 	@Override
 	public List<User> companyUser(Long compSeq) {
-
-		Role role = roleRepository.findByRoleLv(2);
+		Role role = roleRepository.findByRoleLv(Role.LevelType.COMP.getLvNum());
 		return userRepository.findByCompSeqAndUserFlAndRolesOrderBySeqDesc(compSeq, 1, role);
 	}
 }

@@ -57,8 +57,7 @@ public class User {
 	
 	@Column(name = "MOD_DT")
 	private Date modDt;
-	
-	
+
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "TB_USER_ROLE", joinColumns = @JoinColumn(name = "USER_SEQ"), inverseJoinColumns = @JoinColumn(name = "ROLE_SEQ"))
 	private Set<Role> roles;

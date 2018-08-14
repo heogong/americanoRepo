@@ -38,6 +38,7 @@ public class UserApplicationTests {
 	@PersistenceContext
 	private EntityManager em;
 
+
 	@Test
 	@Transactional
 	@Rollback(value=true)
@@ -70,16 +71,6 @@ public class UserApplicationTests {
 //		}
 
 
-//		List<Company> company = companyRepository.findByOrderByCompSeqDesc();
-//
-//
-//		for(Company com : company) {
-//			System.out.println("compname : "+com.getCompNm());
-//			//System.out.println(com.getCompNm() +" : "+com.getUsers().size());
-//		}
-
-
-
 //		Company newComp = new Company();
 //
 //		newComp.setCompNm("junit test");
@@ -91,8 +82,8 @@ public class UserApplicationTests {
 //		System.out.println(companyRepository.save(newComp));
 	}
 
-	@Test
-	@Transactional
+	//@Test
+	//@Transactional
 	public void updateTest() {
 		Company cc = companyRepository.findByCompSeq((long) 1);
 
@@ -105,6 +96,30 @@ public class UserApplicationTests {
 		Company cc2 = companyRepository.findByCompSeq((long) 1);
 
 		System.out.println("owner2 : " +cc2.getCompOwner());
-
 	}
+
+//	@Test
+//	@Transactional
+	public void findCompany() {
+		List<Company> company = companyRepository.findByOrderByCompSeqDesc();
+
+		for(Company com : company) {
+			System.out.println("compname : "+com.getCompNm());
+		}
+	}
+
+	@Test
+	@Transactional
+	public void findUser() {
+
+		Role role = roleRepository.findByRoleLv(Role.LevelType.COMP.getLvNum());
+		List<User> users = userRepository.findByCompSeqAndUserFlAndRolesOrderBySeqDesc((long) 1, 1, role);
+
+		for(User aa : users) {
+			System.out.println("userId : " +aa.getUserId());
+			System.out.println("userName : "+aa.getUserNm());
+		}
+	}
+
+
 }

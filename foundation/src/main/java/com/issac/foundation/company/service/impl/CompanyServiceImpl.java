@@ -34,7 +34,7 @@ public class CompanyServiceImpl implements CompanyService{
 	public List<Company> getListCompany() {
 
 		return companyRepository.findByOrderByCompSeqDesc();
-	}
+}
 
 	@Override
 	public Company viewCompany(Company company) {
