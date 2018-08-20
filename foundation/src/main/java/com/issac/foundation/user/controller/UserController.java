@@ -12,9 +12,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,33 +51,30 @@ public class UserController {
 		modelAndView.setViewName("registration");
 		return modelAndView;
 	}
-	
-	
-	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
-		ModelAndView modelAndView = new ModelAndView();
-		User userExists = loginService.findUserByUserId(user.getUserId());
-		if (userExists != null) {
+
+	@CrossOrigin(origins = "*")
+	//@RequestMapping(value = "/writeUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/writeUser")
+	public User writeUser(@Valid User user, BindingResult bindingResult) throws BindException {
+
+		User findUserOrSaveUser = loginService.findUserByUserId(user.getUserId());
+
+		if (findUserOrSaveUser != null) {
 			bindingResult
 					.rejectValue("ID", "error.user",
 							"There is already a user registered with the ID provided");
 		}
+
 		if (bindingResult.hasErrors()) {
 			System.out.println("============== bindingResult.hasErrors() ============== ");
-			System.out.println("toString : "+bindingResult.toString());
-			System.out.println("errorCount : "+bindingResult.getErrorCount());
-			System.out.println("objectName : "+bindingResult.getObjectName());
-			
-			modelAndView.setViewName("registration");
+
+			throw new BindException(bindingResult);
+
 		} else {
-			userService.saveUser(user);
-			
-			modelAndView.addObject("user", new User());
-			modelAndView.setViewName("registration");
-			
+			findUserOrSaveUser = userService.saveUser(user);
 		}
-		
-		return modelAndView;
+
+		return findUserOrSaveUser;
 	}
 	
 	// 사용자 리스트 

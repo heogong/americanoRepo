@@ -24,14 +24,10 @@ public class Role {
 	public enum LevelType {
 		SYSTEM(1), COMP(2), EDU(3), USER(4);
 
-		final private int lvNum;
-
-		public int getLvNum() {
-			return lvNum;
-		}
+		public int LEVEL;
 
 		private LevelType(int lvNum){
-			this.lvNum = lvNum;
+			this.LEVEL = lvNum;
 		}
 	}
 

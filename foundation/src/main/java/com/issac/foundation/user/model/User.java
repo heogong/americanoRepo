@@ -1,6 +1,8 @@
 package com.issac.foundation.user.model;
 
 import java.security.acl.Permission;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -162,7 +164,9 @@ public class User {
 		return userBirth;
 	}
 
-	public void setUserBirth(Date userBirth) {
-		this.userBirth = userBirth;
+	public void setUserBirth(String userBirth) throws ParseException {
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(userBirth);
+
+		this.userBirth = date;
 	}
 }

@@ -112,13 +112,19 @@ public class UserApplicationTests {
 	@Transactional
 	public void findUser() {
 
-		Role role = roleRepository.findByRoleLv(Role.LevelType.COMP.getLvNum());
-		List<User> users = userRepository.findByCompSeqAndUserFlAndRolesOrderBySeqDesc((long) 1, 1, role);
+		System.out.println("SYSTEM : "+Role.LevelType.SYSTEM);
+		System.out.println("COMP : "+Role.LevelType.COMP);
+		System.out.println("EDU : "+Role.LevelType.EDU);
+		System.out.println("USER : "+Role.LevelType.USER);
 
-		for(User aa : users) {
-			System.out.println("userId : " +aa.getUserId());
-			System.out.println("userName : "+aa.getUserNm());
-		}
+
+//		Role role = roleRepository.findByRoleLv(Role.LevelType.COMP.LEVEL);
+//		List<User> users = userRepository.findByCompSeqAndUserFlAndRolesOrderBySeqDesc((long) 1, 1, role);
+//
+//		for(User aa : users) {
+//			System.out.println("userId : " +aa.getUserId());
+//			System.out.println("userName : "+aa.getUserNm());
+//		}
 	}
 
 	@Test

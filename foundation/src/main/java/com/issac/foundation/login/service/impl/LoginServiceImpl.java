@@ -19,6 +19,6 @@ public class LoginServiceImpl implements LoginService {
 	
 	@Override
 	public User findUserByUserId(String userId) {
-		return userRepository.findByUserId(userId);
+		return userRepository.findByUserIdAndUserFl(userId, 1);
 	}
 }

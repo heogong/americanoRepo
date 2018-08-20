@@ -30,18 +30,18 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
-	public void saveUser(User user) {
+	public User saveUser(User user) {
 		user.setUserPasswd(bCryptPasswordEncoder.encode(user.getUserPasswd()));
         user.setUserFl(1);
         user.setUserSt(1000);
         user.setInstDt(new Date());
-        user.setUserLv(Role.LevelType.COMP.getLvNum());
-        user.setUserTel("010-1111-1111");
 
-		Role userRole = roleRepository.findByRoleLv(Role.LevelType.COMP.getLvNum());
+
+        user.setUserLv(Role.LevelType.COMP.LEVEL);
+		Role userRole = roleRepository.findByRoleLv(Role.LevelType.COMP.LEVEL);
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         
-		userRepository.save(user);
+		return userRepository.save(user);
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService {
 	//	회사 관리자 사용자 리스트
 	@Override
 	public List<User> companyUser(Long compSeq) {
-		Role role = roleRepository.findByRoleLv(Role.LevelType.COMP.getLvNum());
+		Role role = roleRepository.findByRoleLv(Role.LevelType.COMP.LEVEL);
 		return userRepository.findByCompSeqAndUserFlAndRolesOrderBySeqDesc(compSeq, 1, role);
 	}
 }
