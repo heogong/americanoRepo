@@ -1,8 +1,12 @@
 package com.issac.foundation;
 
+import java.text.ParseException;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
+import com.issac.foundation.user.model.Level;
 import com.issac.foundation.user.model.Role;
 import com.issac.foundation.user.repository.RoleRepository;
 import org.junit.Test;
@@ -21,6 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.xml.transform.sax.SAXSource;
+
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -112,11 +118,6 @@ public class UserApplicationTests {
 	@Transactional
 	public void findUser() {
 
-		System.out.println("SYSTEM : "+Role.LevelType.SYSTEM);
-		System.out.println("COMP : "+Role.LevelType.COMP);
-		System.out.println("EDU : "+Role.LevelType.EDU);
-		System.out.println("USER : "+Role.LevelType.USER);
-
 
 //		Role role = roleRepository.findByRoleLv(Role.LevelType.COMP.LEVEL);
 //		List<User> users = userRepository.findByCompSeqAndUserFlAndRolesOrderBySeqDesc((long) 1, 1, role);
@@ -133,10 +134,37 @@ public class UserApplicationTests {
 		Role userRole = roleRepository.findByRole("SYSTEM");
 
 		System.out.println("seq : "+userRole.getRoleSeq());
-		System.out.println("level : "+userRole.getRoleLv());
 	}
 
+	@Test
+	//@Transactional
+	public void enumTest() throws ParseException {
+		//assertEquals(1, Level.BASIC);
+//		assertEquals(Level.SILVER, 2);
+//		assertEquals(Level.GOLD, 3);
 
+		User user = new User();
 
+		user.setUserId("ENUM_TEST");
+		user.setUserNm("ENUM_TEST");
+		user.setCompSeq(Long.valueOf(1));
+		user.setUserPasswd("123");
+		user.setUserFl(1);
+		user.setUserSt(1000);
+		user.setInstDt(new Date());
 
+		user.setUserLv(Level.COMP_ADM);
+		Role userRole = roleRepository.findByRole(Level.COMP_ADM.toString());
+		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+
+		userRepository.save(user);
+
+		System.out.println("test level : "+user.getUserLv());
+		System.out.println("ordinal : "+user.getUserLv().ordinal());
+		System.out.println("intValue : "+user.getUserLv().intValue());
+
+		//System.out.println("valueof : "+Level.valueOf(1));
+	}
 }
+
+

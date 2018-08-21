@@ -18,19 +18,6 @@ public class Role {
 	@Column(name="ROLE")
 	private String role;
 
-	@Column(name="ROLE_LV")
-	private int roleLv;
-
-	public enum LevelType {
-		SYSTEM(1), COMP(2), EDU(3), USER(4);
-
-		public int LEVEL;
-
-		private LevelType(int lvNum){
-			this.LEVEL = lvNum;
-		}
-	}
-
 	public int getRoleSeq() {
 		return roleSeq;
 	}
@@ -43,12 +30,5 @@ public class Role {
 	}
 	public void setRole(String role) {
 		this.role = role;
-	}
-
-	public int getRoleLv() {
-		return roleLv;
-	}
-	public void setRoleLv(int roleLv) {
-		this.roleLv = roleLv;
 	}
 }

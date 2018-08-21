@@ -1,14 +1,11 @@
 package com.issac.foundation.user.model;
 
-import java.security.acl.Permission;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Transient;
@@ -40,7 +37,7 @@ public class User {
 	private String userNm;
 	
 	@Column(name = "USER_LV")
-	private int userLv;
+	private Level userLv;
 	
 	@Column(name = "USER_BIRTH")
 	private Date userBirth;
@@ -61,6 +58,7 @@ public class User {
 	private Date modDt;
 
 	@ManyToMany(cascade = CascadeType.ALL)
+	//@ManyToMany
 	@JoinTable(name = "TB_USER_ROLE", joinColumns = @JoinColumn(name = "USER_SEQ"), inverseJoinColumns = @JoinColumn(name = "ROLE_SEQ"))
 	private Set<Role> roles;
 
@@ -102,14 +100,6 @@ public class User {
 
 	public void setUserNm(String userNm) {
 		this.userNm = userNm;
-	}
-
-	public int getUserLv() {
-		return userLv;
-	}
-
-	public void setUserLv(int userLv) {
-		this.userLv = userLv;
 	}
 
 	public String getUserTel() {
@@ -168,5 +158,13 @@ public class User {
 		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(userBirth);
 
 		this.userBirth = date;
+	}
+
+	public Level getUserLv() {
+		return userLv;
+	}
+
+	public void setUserLv(Level userLv) {
+		this.userLv = userLv;
 	}
 }

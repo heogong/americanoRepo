@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.transaction.Transactional;
 
+import com.issac.foundation.user.model.Level;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,9 +37,10 @@ public class UserServiceImpl implements UserService {
         user.setUserSt(1000);
         user.setInstDt(new Date());
 
+//        client 에서 level 정보 가져와서 user 객체의 set 해야함
 
-        user.setUserLv(Role.LevelType.COMP.LEVEL);
-		Role userRole = roleRepository.findByRoleLv(Role.LevelType.COMP.LEVEL);
+        user.setUserLv(Level.COMP_ADM);
+		Role userRole = roleRepository.findByRole(Level.COMP_ADM.toString());
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         
 		return userRepository.save(user);
@@ -89,7 +91,7 @@ public class UserServiceImpl implements UserService {
 	//	회사 관리자 사용자 리스트
 	@Override
 	public List<User> companyUser(Long compSeq) {
-		Role role = roleRepository.findByRoleLv(Role.LevelType.COMP.LEVEL);
+		Role role = roleRepository.findByRole(Level.COMP_ADM.toString());
 		return userRepository.findByCompSeqAndUserFlAndRolesOrderBySeqDesc(compSeq, 1, role);
 	}
 }
