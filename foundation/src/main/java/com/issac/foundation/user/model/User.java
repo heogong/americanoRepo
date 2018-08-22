@@ -25,17 +25,17 @@ public class User {
 	@Column(name = "USER_ID")
 	@NotEmpty(message = "*Please provide an ID")
 	private String userId;
-	
+
 	@Column(name = "USER_PASSWD")
 	//@Length(min = 5, message = "*Your password must have at least 5 characters")
 	//@NotNull(message = "*Please provide your password")
 	@Transient
 	private String userPasswd;
-	
+
 	@Column(name = "USER_NM")
 	@NotEmpty(message = "*Please provide your name")
 	private String userNm;
-	
+
 	@Column(name = "USER_LV")
 	private Level userLv;
 	
