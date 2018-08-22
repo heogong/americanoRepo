@@ -31,16 +31,26 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
+	public Optional<User> findUser(Long seq) {
+		return userRepository.findById(seq);
+	}
+
+	@Override
+	public User findUserByUserId(String userId) {
+		return userRepository.findByUserIdAndUserFl(userId, 1);
+	}
+
+	@Override
 	public User saveUser(User user) {
 		user.setUserPasswd(bCryptPasswordEncoder.encode(user.getUserPasswd()));
         user.setUserFl(1);
         user.setUserSt(1000);
-        user.setInstDt(new Date());
-
         user.setUserLv(user.getUserLv().intValue());
+		user.setInstDt(new Date());
+
 		Role userRole = roleRepository.findByRole(user.getUserLv().toString());
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-        
+
 		return userRepository.save(user);
 	}
 
@@ -48,14 +58,6 @@ public class UserServiceImpl implements UserService {
 	public Page<User> listUser(Pageable pageable, String search) {
 		return userRepository.findByUserFlAndUserIdContaining(1, pageable, search);
 	}
-
-
-	@Override
-	public Optional<User> findUser(Long seq) {
-		
-		return userRepository.findById(seq);
-	}
-
 
 	@Override
 	public void editUser(User user) {
@@ -70,7 +72,6 @@ public class UserServiceImpl implements UserService {
 		updtUser.setRoles(user.getRoles());
 		
 		userRepository.save(updtUser);
-		
 	}
 
 	@Override

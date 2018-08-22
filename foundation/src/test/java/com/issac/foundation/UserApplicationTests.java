@@ -153,7 +153,7 @@ public class UserApplicationTests {
 		user.setUserSt(1000);
 		user.setInstDt(new Date());
 
-		user.setUserLv(Level.COMP_ADM);
+		user.setUserLv(Level.COMP_ADM.intValue());
 		Role userRole = roleRepository.findByRole(Level.COMP_ADM.toString());
 		user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 

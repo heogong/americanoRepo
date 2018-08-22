@@ -1,5 +1,7 @@
 package com.issac.foundation.login.controller;
 
+import com.issac.foundation.user.repository.UserRepository;
+import com.issac.foundation.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +19,9 @@ public class LoginController {
 	
 	@Autowired
 	private LoginService loginService;
+
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
 	public ModelAndView login(){
@@ -31,7 +36,7 @@ public class LoginController {
 	public ModelAndView home(){
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = loginService.findUserByUserId(auth.getName());
+		User user = userService.findUserByUserId(auth.getName());
 		modelAndView.addObject("userName", "Welcome " + user.getUserNm() + "("+ user.getUserId() +")");
 		modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
 		modelAndView.setViewName("admin/home");
