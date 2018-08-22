@@ -164,7 +164,7 @@ public class User {
 		return userLv;
 	}
 
-	public void setUserLv(Level userLv) {
-		this.userLv = userLv;
+	public void setUserLv(int userLv) {
+		this.userLv = Level.valueOf(userLv);
 	}
 }

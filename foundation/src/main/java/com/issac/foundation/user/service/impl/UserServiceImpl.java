@@ -37,10 +37,8 @@ public class UserServiceImpl implements UserService {
         user.setUserSt(1000);
         user.setInstDt(new Date());
 
-//        client 에서 level 정보 가져와서 user 객체의 set 해야함
-
-        user.setUserLv(Level.COMP_ADM);
-		Role userRole = roleRepository.findByRole(Level.COMP_ADM.toString());
+        user.setUserLv(user.getUserLv().intValue());
+		Role userRole = roleRepository.findByRole(user.getUserLv().toString());
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         
 		return userRepository.save(user);
