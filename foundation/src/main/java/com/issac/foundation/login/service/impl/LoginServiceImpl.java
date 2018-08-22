@@ -16,9 +16,4 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	
-	@Override
-	public User findUserByUserId(String userId) {
-		return userRepository.findByUserIdAndUserFl(userId, 1);
-	}
 }
