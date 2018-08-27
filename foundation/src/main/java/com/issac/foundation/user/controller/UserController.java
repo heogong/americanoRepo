@@ -1,7 +1,6 @@
 package com.issac.foundation.user.controller;
 
 import com.issac.foundation.login.service.LoginService;
-import com.issac.foundation.user.model.Role;
 import com.issac.foundation.user.model.User;
 import com.issac.foundation.user.service.RoleService;
 import com.issac.foundation.user.service.UserService;
@@ -94,20 +93,14 @@ public class UserController {
     }
 
     // 사용자 조회
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/findUser")
     @ResponseBody
-    public ModelAndView findUser(@RequestParam("seq") @NotNull Long seq) {
-        ModelAndView modelAndView = new ModelAndView();
+    public Optional<User> findUser(@RequestParam("seq") @NotNull Long seq) {
 
         Optional<User> user = userService.findUser(seq);
-        Iterable<Role> role = roleService.listRole();
 
-        modelAndView.addObject("user", user.get());
-        modelAndView.addObject("role", role);
-
-        modelAndView.setViewName("/user/editUser");
-
-        return modelAndView;
+        return user;
     }
 
     // 사용자 수정
