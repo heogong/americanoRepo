@@ -1,5 +1,6 @@
 package com.issac.foundation.user.service.impl;
 
+import java.text.ParseException;
 import java.util.*;
 
 import javax.transaction.Transactional;
@@ -35,18 +36,18 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findById(seq);
 	}
 
-	@Override
-	public User findUserByUserId(String userId) {
-		return userRepository.findByUserIdAndUserFl(userId, 1);
-	}
+		@Override
+		public User findUserByUserId(String userId) {
+			return userRepository.findByUserIdAndUserFl(userId, 1);
+		}
 
-	@Override
-	public User saveUser(User user) {
-		user.setUserPasswd(bCryptPasswordEncoder.encode(user.getUserPasswd()));
-        user.setUserFl(1);
-        user.setUserSt(1000);
-        user.setUserLv(user.getUserLv().intValue());
-		user.setInstDt(new Date());
+		@Override
+		public User saveUser(User user) {
+			user.setUserPasswd(bCryptPasswordEncoder.encode(user.getUserPasswd()));
+			user.setUserFl(1);
+			user.setUserSt(1000);
+			user.setUserLv(user.getUserLv().intValue());
+			user.setInstDt(new Date());
 
 		Role userRole = roleRepository.findByRole(user.getUserLv().toString());
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
@@ -67,9 +68,19 @@ public class UserServiceImpl implements UserService {
 		
 		// set value
 		updtUser.setUserNm(user.getUserNm());
+
+		try {
+			updtUser.setUserBirth(user.getUserBirth());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
 		updtUser.setUserTel(user.getUserTel());
 		updtUser.setModDt(new Date());
-		updtUser.setRoles(user.getRoles());
+		updtUser.setUserLv(user.getUserLv().intValue());
+
+		Role userRole = roleRepository.findByRole(user.getUserLv().toString());
+		updtUser.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 		
 		userRepository.save(updtUser);
 	}

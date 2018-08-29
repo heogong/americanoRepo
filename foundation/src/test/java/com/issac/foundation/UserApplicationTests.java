@@ -1,10 +1,7 @@
 package com.issac.foundation;
 
 import java.text.ParseException;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 import com.issac.foundation.user.model.Level;
 import com.issac.foundation.user.model.Role;
@@ -131,9 +128,14 @@ public class UserApplicationTests {
 	@Test
 	public void findRole() {
 
-		Role userRole = roleRepository.findByRole("SYSTEM");
 
-		System.out.println("seq : "+userRole.getRoleSeq());
+		List<Role> userRole = roleRepository.findByRoleNot(Level.SYS_ADM.toString());
+
+		for(Role aa : userRole) {
+			System.out.println(aa.getRole());
+			System.out.println(aa.getRoleSeq());
+		}
+
 	}
 
 	@Test
@@ -164,6 +166,19 @@ public class UserApplicationTests {
 		System.out.println("intValue : "+user.getUserLv().intValue());
 
 		//System.out.println("valueof : "+Level.valueOf(1));
+	}
+
+	@Test
+	public void dateFormat() {
+
+		Optional<User> user = userRepository.findById((long) 3);
+
+		System.out.println("birthday : "+user.get().getUserBirth());
+		System.out.println("birthday : "+user.get().getUserBirth());
+		System.out.println("birthday : "+user.get().getUserBirth());
+		System.out.println("birthday : "+user.get().getUserBirth());
+		System.out.println("birthday : "+user.get().getUserBirth());
+
 	}
 }
 

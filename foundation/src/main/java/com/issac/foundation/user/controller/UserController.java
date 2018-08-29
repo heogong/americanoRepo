@@ -1,6 +1,7 @@
 package com.issac.foundation.user.controller;
 
 import com.issac.foundation.login.service.LoginService;
+import com.issac.foundation.user.model.Role;
 import com.issac.foundation.user.model.User;
 import com.issac.foundation.user.service.RoleService;
 import com.issac.foundation.user.service.UserService;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +61,7 @@ public class UserController {
         }
 
         if (bindingResult.hasErrors()) {
+
             System.out.println("============== bindingResult.hasErrors() ============== ");
 
             throw new BindException(bindingResult);
@@ -96,30 +99,33 @@ public class UserController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/findUser")
     @ResponseBody
-    public Optional<User> findUser(@RequestParam("seq") @NotNull Long seq) {
+    public HashMap<String, Object> findUser(@RequestParam("seq") @NotNull Long seq) {
 
         Optional<User> user = userService.findUser(seq);
+        List<Role> role = roleService.listRole();
 
-        return user;
+        HashMap<String, Object> map = new HashMap<>();
+
+        map.put("user", user);
+        map.put("role", role);
+
+        return map;
     }
 
     // 사용자 수정
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/editUser")
     @ResponseBody
-    public ModelAndView editUser(@Valid User user, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
+    public void editUser(@Valid User user, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             System.out.println("============== bindingResult.hasErrors() ============== ");
             System.out.println("toString : " + bindingResult.toString());
 
-            modelAndView.setViewName("registration");
         } else {
             userService.editUser(user);
         }
-
-        modelAndView.setViewName("/user/editUser");
-        return modelAndView;
+    //return userService.editUser(user);
     }
 
     // 사용자 삭제 - 수정이 필요함(제약조건 때문에 DELETE가 안됨)

@@ -150,8 +150,9 @@ public class User {
 		this.roles = roles;
 	}
 
-	public Date getUserBirth() {
-		return userBirth;
+	public String getUserBirth() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		return dateFormat.format(userBirth);
 	}
 
 	public void setUserBirth(String userBirth) throws ParseException {

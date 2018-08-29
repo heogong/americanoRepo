@@ -18,6 +18,9 @@ public class Role {
 	@Column(name="ROLE")
 	private String role;
 
+	@Column(name="ROLE_LV")
+	private int roleLv;
+
 	public int getRoleSeq() {
 		return roleSeq;
 	}
@@ -30,5 +33,13 @@ public class Role {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public int getRoleLv() {
+		return roleLv;
+	}
+
+	public void setRoleLv(int roleLv) {
+		this.roleLv = roleLv;
 	}
 }
