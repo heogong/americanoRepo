@@ -4,6 +4,7 @@ import com.issac.foundation.company.model.Company;
 import com.issac.foundation.company.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,9 @@ public class CompanyController {
     @CrossOrigin(origins ="*")
     @RequestMapping(value="/createCompany")
     @ResponseBody
-    public void createCompany(@ModelAttribute Company company) {
+    public void createCompany(@ModelAttribute Company company, BindingResult bindingResult) {
+
+        // 클라이언트 회사 레벨 전송 코드 추가 해야 함 (법인 : 1, 학원 : 2)
 
         companyService.createCompany(company);
     }

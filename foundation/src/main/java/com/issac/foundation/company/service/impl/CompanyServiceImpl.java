@@ -3,6 +3,7 @@ package com.issac.foundation.company.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import com.issac.foundation.company.model.CompLevel;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.issac.foundation.company.model.Company;
@@ -24,7 +25,10 @@ public class CompanyServiceImpl implements CompanyService{
 		newComp.setCompOwner(company.getCompOwner());
 		newComp.setCompTel(company.getCompTel());
 		newComp.setCompAddr(company.getCompAddr());
-		newComp.setCompFl(1);
+
+		newComp.setCompLv(company.getCompLv().intValue());
+
+		newComp.setCompFl(true);
 		newComp.setInstDt(new Date());
 
 		companyRepository.save(newComp);
@@ -33,7 +37,7 @@ public class CompanyServiceImpl implements CompanyService{
 	@Override
 	public List<Company> getListCompany() {
 
-		return companyRepository.findByOrderByCompSeqDesc();
+		return companyRepository.findByCompLvOrderByCompSeqDesc(CompLevel.CORP);
 }
 
 	@Override

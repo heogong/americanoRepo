@@ -116,16 +116,18 @@ public class UserController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/editUser")
     @ResponseBody
-    public void editUser(@Valid User user, BindingResult bindingResult) {
+    public User editUser(@Valid User user, BindingResult bindingResult) {
+        User editUser = new User();
 
         if (bindingResult.hasErrors()) {
             System.out.println("============== bindingResult.hasErrors() ============== ");
             System.out.println("toString : " + bindingResult.toString());
 
         } else {
-            userService.editUser(user);
+            editUser = userService.editUser(user);
         }
-    //return userService.editUser(user);
+
+        return editUser;
     }
 
     // 사용자 삭제 - 수정이 필요함(제약조건 때문에 DELETE가 안됨)

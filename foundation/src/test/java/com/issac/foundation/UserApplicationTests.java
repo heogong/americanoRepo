@@ -3,6 +3,7 @@ package com.issac.foundation;
 import java.text.ParseException;
 import java.util.*;
 
+import com.issac.foundation.company.model.CompLevel;
 import com.issac.foundation.user.model.Level;
 import com.issac.foundation.user.model.Role;
 import com.issac.foundation.user.repository.RoleRepository;
@@ -101,10 +102,10 @@ public class UserApplicationTests {
 		System.out.println("owner2 : " +cc2.getCompOwner());
 	}
 
-//	@Test
+	@Test
 //	@Transactional
 	public void findCompany() {
-		List<Company> company = companyRepository.findByOrderByCompSeqDesc();
+		List<Company> company = companyRepository.findByCompLvOrderByCompSeqDesc(CompLevel.CORP);
 
 		for(Company com : company) {
 			System.out.println("compname : "+com.getCompNm());
@@ -151,7 +152,7 @@ public class UserApplicationTests {
 		user.setUserNm("ENUM_TEST");
 		user.setCompSeq(Long.valueOf(1));
 		user.setUserPasswd("123");
-		user.setUserFl(1);
+		user.setUserFl(true);
 		user.setUserSt(1000);
 		user.setInstDt(new Date());
 
@@ -173,11 +174,13 @@ public class UserApplicationTests {
 
 		Optional<User> user = userRepository.findById((long) 3);
 
-		System.out.println("birthday : "+user.get().getUserBirth());
-		System.out.println("birthday : "+user.get().getUserBirth());
-		System.out.println("birthday : "+user.get().getUserBirth());
-		System.out.println("birthday : "+user.get().getUserBirth());
-		System.out.println("birthday : "+user.get().getUserBirth());
+		User updtUser = user.get();
+
+		System.out.println("userNm : "+user.get().getUserNm());
+
+		updtUser.setUserBirth("2018-09-04");
+
+		userRepository.save(updtUser);
 
 	}
 }

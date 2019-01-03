@@ -2,6 +2,7 @@ package com.issac.foundation.user.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -122,8 +123,8 @@ public class User {
 		return userFl;
 	}
 
-	public void setUserFl(int userFl) {
-		this.userFl = userFl;
+	public void setUserFl(boolean userFl) {
+		this.userFl = userFl == true ? 1 :0;
 	}
 
 	public Date getInstDt() {
@@ -155,8 +156,13 @@ public class User {
 		return dateFormat.format(userBirth);
 	}
 
-	public void setUserBirth(String userBirth) throws ParseException {
-		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(userBirth);
+	public void setUserBirth(String userBirth) {
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd").parse(userBirth);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		this.userBirth = date;
 	}

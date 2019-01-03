@@ -1,23 +1,10 @@
 package com.issac.foundation.company.model;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import com.issac.foundation.user.model.User;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "TB_COMP")
@@ -27,6 +14,9 @@ public class Company {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "COMP_SEQ")
 	private Long compSeq;
+
+	@Column(name = "P_COMP_SEQ")
+	private int pCompSeq;
 	
 	@Column(name = "COMP_NM")
 	private String compNm;
@@ -39,6 +29,9 @@ public class Company {
 
 	@Column(name = "COMP_ADDR")
 	private String compAddr;
+
+	@Column(name = "COMP_LV")
+	private CompLevel compLv;
 
 	@Column(name = "COMP_FL")
 	private int compFl;
@@ -89,8 +82,8 @@ public class Company {
 		return compFl;
 	}
 
-	public void setCompFl(int compFl) {
-		this.compFl = compFl;
+	public void setCompFl(boolean compFl) {
+		this.compFl = compFl == true ? 1 : 0;
 	}
 
 	public Date getInstDt() {
@@ -123,5 +116,21 @@ public class Company {
 
 	public void setCompAddr(String compAddr) {
 		this.compAddr = compAddr;
+	}
+
+	public int getpCompSeq() {
+		return pCompSeq;
+	}
+
+	public void setpCompSeq(int pCompSeq) {
+		this.pCompSeq = pCompSeq;
+	}
+
+	public CompLevel getCompLv() {
+		return compLv;
+	}
+
+	public void setCompLv(int compLv) {
+		this.compLv = CompLevel.valueOf(compLv);
 	}
 }

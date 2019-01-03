@@ -12,7 +12,7 @@ public interface UserService {
 	public Optional<User> findUser(Long seq);
 	public User findUserByUserId(String userId);
 	public User saveUser(User user);
-	public void editUser(User user);
+	public User editUser(User user);
 	public Page<User> listUser(Pageable pageable, String search);
 	public void deleteUser (Long Seq);
     List<User> companyUser(Long compSeq);

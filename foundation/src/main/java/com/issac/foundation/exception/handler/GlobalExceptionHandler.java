@@ -26,15 +26,15 @@ public class GlobalExceptionHandler {
 		return e.getMessage();
     }  
   
-    @ExceptionHandler(value = Exception.class)  
-    public String handleException(Exception e) {
-    	
-    	logger.debug(e.getMessage());
-    	logger.error(e.getMessage());
-    	
-    	return e.getMessage();
-    }
-    
+//    @ExceptionHandler(value = Exception.class)
+//    public String handleException(Exception e) {
+//
+//    	logger.debug(e.getMessage());
+//    	logger.error(e.getMessage());
+//
+//    	return e.getMessage();
+//    }
+//
     @ExceptionHandler(value = NumberFormatException.class)  
     public String nfeHandler(NumberFormatException e){
     	
