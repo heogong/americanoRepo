@@ -88,19 +88,17 @@ public class UserController {
     public HashMap<String, Object> findUser(@RequestParam("seq") @NotNull Long seq) {
 
         Optional<User> user = userService.findUser(seq);
-<<<<<<< Updated upstream
-        List<Role> role = roleService.listRole();
+
+       // List<Role> role = roleService.listRole();
 
         HashMap<String, Object> map = new HashMap<>();
-=======
         //Iterable<Role> role = roleService.listRole();
 
-        modelAndView.addObject("user", user.get());
+       // modelAndView.addObject("user", user.get());
        // modelAndView.addObject("role", role);
->>>>>>> Stashed changes
 
         map.put("user", user);
-        map.put("role", role);
+       // map.put("role", role);
 
         return map;
     }
