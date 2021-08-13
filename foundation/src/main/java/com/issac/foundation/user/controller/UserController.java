@@ -32,20 +32,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private RoleService roleService;
-
-    private static final int DEFAULT_PAGE_NUMBER = 0;
-    private static final int DEFAULT_PAGE_SIZE = 3;
-
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public ModelAndView registration() {
-        ModelAndView modelAndView = new ModelAndView();
-        User user = new User();
-        modelAndView.addObject("user", user);
-        modelAndView.setViewName("registration");
-        return modelAndView;
-    }
 
     @CrossOrigin(origins = "*")
     //@RequestMapping(value = "/writeUser", method = RequestMethod.POST)
@@ -78,8 +64,8 @@ public class UserController {
     @RequestMapping(value = "/getListUser")
     @ResponseBody
     public Page<User> getListUser(@PageableDefault(
-            page = DEFAULT_PAGE_NUMBER,
-            size = DEFAULT_PAGE_SIZE,
+            page = 1,
+            size = 10,
             sort = "seq",
             direction = Direction.DESC
     ) Pageable pageable
@@ -102,9 +88,16 @@ public class UserController {
     public HashMap<String, Object> findUser(@RequestParam("seq") @NotNull Long seq) {
 
         Optional<User> user = userService.findUser(seq);
+<<<<<<< Updated upstream
         List<Role> role = roleService.listRole();
 
         HashMap<String, Object> map = new HashMap<>();
+=======
+        //Iterable<Role> role = roleService.listRole();
+
+        modelAndView.addObject("user", user.get());
+       // modelAndView.addObject("role", role);
+>>>>>>> Stashed changes
 
         map.put("user", user);
         map.put("role", role);
