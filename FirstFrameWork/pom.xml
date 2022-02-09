@@ -19,7 +19,7 @@
 		
 		<!-- JPA, 하이버네이트 버전 -->
         <jpa.version>1.9.0.RELEASE</jpa.version>
-        <hibernate.version>4.3.10.Final</hibernate.version>
+        <hibernate.version>5.4.24.Final</hibernate.version>
         
         <!-- mysql 버전 -->
         <mysql-connector-version>5.1.44</mysql-connector-version>
