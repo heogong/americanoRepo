@@ -22,7 +22,7 @@
         <hibernate.version>4.3.10.Final</hibernate.version>
         
         <!-- mysql 버전 -->
-        <mysql-connector-version>5.1.44</mysql-connector-version>
+        <mysql-connector-version>8.0.28</mysql-connector-version>
         
 	</properties>
 	<dependencies>
