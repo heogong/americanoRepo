@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cafe-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /tea    # URL에서 /tea 입력이 들어오면
+        pathType: Prefix
+        backend:
+          service:
+            name: tea-svc    # tea-svc라는 서비스에 연결
+            port:
+              number: 80
+      - path: /coffee    # URL에서 /coffee 입력이 들어오면
+        pathType: Prefix
+        backend:
+          service:
+            name: coffee-svc    # coffee-svc라는 서비스에 연결
+            port:
+              number: 80
+
