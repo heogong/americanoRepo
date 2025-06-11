@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: coffee    # coffee라는 디플로이먼트 생성
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: coffee
@@ -36,7 +36,7 @@ kind: Deployment
 metadata:
   name: tea    # tea라는 디플로이먼트 생성
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: tea
