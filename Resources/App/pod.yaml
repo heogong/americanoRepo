@@ -5,6 +5,9 @@ metadata:
   labels:
     name: nginx-demo
 spec:
+  selector:
+      matchLabels:
+        app: nginx-demo
   containers:
   - name: nginx
     image: nginx:latest
