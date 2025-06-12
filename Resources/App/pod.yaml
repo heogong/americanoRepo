@@ -6,7 +6,7 @@ metadata:
     name: nginx-demo
 spec:
   containers:
-  - name: nginx-demo
+  - name: nginx
     image: nginx:latest
     resources:
       limits:
